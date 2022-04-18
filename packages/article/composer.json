@@ -1,0 +1,30 @@
+{
+    "name": "yago-cms/article",
+    "authors": [
+        {
+            "name": "Johan Grönberg",
+            "email": "johan@formsmedjan.se"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Yago\\Article\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Yago\\Article\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "yago": {
+            "name": "article"
+        },
+        "laravel": {
+            "providers": [
+                "Yago\\Article\\Providers\\ArticleServiceProvider"
+            ]
+        }
+    },
+    "version": "3.0.0"
+}

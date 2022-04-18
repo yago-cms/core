@@ -1,0 +1,10 @@
+{
+    "private": true,
+    "workspaces": [
+        "packages/yago"
+    ],
+    "prettier": {
+        "printWidth": 120,
+        "singleQuote": true
+    }
+}

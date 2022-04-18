@@ -1,0 +1,66 @@
+{
+    "name": "yago-cms/core",
+    "description": "YAGO Monorepo",
+    "authors": [
+        {
+            "name": "Johan Grönberg",
+            "email": "johan@formsmedjan.se"
+        }
+    ],
+    "require": {
+        "laravel/sail": "^1.12",
+        "yago-cms/article": "self.version",
+        "yago-cms/cms": "self.version"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "packages/yago/app/",
+            "Database\\Factories\\": "packages/yago/database/factories/",
+            "Database\\Seeders\\": "packages/yago/database/seeders/",
+            "Yago\\Article\\": "packages/article/src/",
+            "Yago\\Cms\\": "packages/cms/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "packages/yago/tests/",
+            "Yago\\Article\\Tests\\": "packages/article/tests/",
+            "Yago\\Cms\\Tests\\": "packages/cms/tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Yago\\Cms\\Providers\\CmsServiceProvider",
+                "Yago\\Article\\Providers\\ArticleServiceProvider"
+            ]
+        },
+        "yago": {
+            "name": "article"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/cms"
+        },
+        {
+            "type": "path",
+            "url": "packages/article"
+        }
+    ],
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "vendor/bin/sail artisan package:discover --ansi"
+        ]
+    },
+    "version": "3.0.0"
+}
