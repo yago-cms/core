@@ -12,56 +12,41 @@ module.exports = {
     entry: {
         vendor: [
             path.join(__dirname, 'resources', 'js', 'module.js'),
-            // path.join(__dirname, 'resources', 'js', 'vendor.js'),
-            'react',
-            'react-dom',
-
-            'react-router-dom',
             '@apollo/client',
-            'graphql',
-
             '@emotion/cache',
             '@emotion/react',
             '@emotion/styled',
-            '@mui/base',
-
-
-            '@mui/base/className/ClassNameGenerator',
-            '@mui/base/composeClasses/composeClasses',
-            '@mui/base/generateUtilityClass/generateUtilityClass',
-            '@mui/base/generateUtilityClasses/generateUtilityClasses',
-
-            '@mui/base/PopperUnstyled',
-            '@mui/base/Portal',
-            '@mui/base/TrapFocus',
-
-
-            '@mui/system',
-
-            '@mui/material',
-
-            '@mui/lab',
-            '@mui/x-data-grid',
-            '@mui/x-date-pickers',
-
-            '@hookform/resolvers',
-            '@hookform/resolvers/yup',
-
-            'yup',
-            'react-hook-form',
-            '@tinymce/tinymce-react',
             '@fortawesome/fontawesome-svg-core',
             '@fortawesome/pro-duotone-svg-icons',
             '@fortawesome/react-fontawesome',
             '@googlemaps/react-wrapper',
-            // 'tinymce',
-
+            '@hookform/resolvers',
+            '@hookform/resolvers/yup',
+            '@mui/base',
+            '@mui/base/className/ClassNameGenerator',
+            '@mui/base/composeClasses/composeClasses',
+            '@mui/base/generateUtilityClass/generateUtilityClass',
+            '@mui/base/generateUtilityClasses/generateUtilityClasses',
+            '@mui/base/PopperUnstyled',
+            '@mui/base/Portal',
+            '@mui/base/TrapFocus',
+            '@mui/lab',
+            '@mui/material',
+            '@mui/system',
+            '@mui/x-data-grid',
+            '@mui/x-date-pickers',
+            '@tinymce/tinymce-react',
             'date-fns/format',
             'date-fns/parseISO',
-
-            'prop-types',
-            'object-assign',
             'fast-equals',
+            'graphql',
+            'object-assign',
+            'prop-types',
+            'react-dom',
+            'react-hook-form',
+            'react-router-dom',
+            'react',
+            'yup',
         ],
     },
     module: {
