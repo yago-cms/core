@@ -1,0 +1,16 @@
+{
+    "name": "@yago/faq",
+    "private": true,
+    "main": "resources/js/app.js",
+    "scripts": {
+        "build": "webpack",
+        "build-watch": "webpack --watch"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.17.9",
+        "@babel/preset-env": "^7.16.11",
+        "@babel/preset-react": "^7.16.7",
+        "babel-loader": "^8.2.4",
+        "react": "^17.0.2"
+    }
+}

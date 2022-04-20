@@ -4,33 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AppBar as MuiAppBar, Box, Button, CircularProgress, Collapse, CssBaseline, Divider, Drawer as MuiDrawer, List, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material";
 import { deepPurple, purple } from "@mui/material/colors";
 import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { forwardRef, useEffect, useMemo, useState } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
 import { useLocalStorage } from "react-use";
+import { modules } from "../module";
 import { GET_ME, LOGOUT } from "../queries";
 import { Login } from "./Login";
-
-// Routes
-let routes = require('../routes').default;
-// let routeFiles = require.context('../../vendor/', true, /routes\.js$/i);
-
-// routeFiles.keys().forEach(file => {
-//     routes = routes.concat(routeFiles(file).default);
-// });
-
-// Menus
-let menuGroups = [
-    require('../menus').default,
-];
-// let menuFiles = require.context('../../vendor/', true, /menus\.js$/i);
-
-// menuFiles.keys().forEach(file => {
-//     menuGroups.push(
-//         menuFiles(file).default,
-//     );
-// });
 
 const drawerWidth = 240;
 
@@ -116,6 +95,22 @@ export const App = () => {
     // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
     const prefersDarkMode = false;
 
+    const [routes, setRoutes] = useState(require('../routes').default);
+    const [menuGroups, setMenuGroups] = useState([require('../menus').default]);
+
+    useEffect(() => {
+        let newRoutes = [...routes];
+        let newMenuGroups = [...menuGroups];
+
+        modules.forEach((module) => {
+            newRoutes = newRoutes.concat(module.routes);
+            newMenuGroups.push(module.menus);
+        })
+
+        setRoutes(newRoutes);
+        setMenuGroups(newMenuGroups);
+    }, [modules]);
+
     const theme = useMemo(() =>
         createTheme({
             palette: {
@@ -193,7 +188,6 @@ export const App = () => {
         setIsDrawerOpen(!isDrawerOpen);
     };
 
-    // ...
     const [isLoggingOut, setIsLoggingOut] = useState(false);
 
     const [accessToken, setAccessToken] = useLocalStorage('accessToken');
@@ -221,7 +215,6 @@ export const App = () => {
     }, [accessToken]);
 
     if (error) return <Error message={error.message} />;
-    // ...
 
     if (!accessToken) {
         return (
@@ -256,79 +249,77 @@ export const App = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                {isLoading
-                    ? (
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                width: '100vw',
-                                height: '100vh',
-                                background: theme.palette.mode == 'dark' ? '#0b0a05' : '#f4f5fa',
-                            }}
-                        >
-                            <CssBaseline />
-                            <CircularProgress />
-                        </Box>
-                    )
-                    : (
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                background: theme.palette.mode == 'dark' ? '#0b0a05' : '#f4f5fa',
-                            }}
-                        >
-                            <CssBaseline />
+            {isLoading
+                ? (
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: '100vw',
+                            height: '100vh',
+                            background: theme.palette.mode == 'dark' ? '#0b0a05' : '#f4f5fa',
+                        }}
+                    >
+                        <CssBaseline />
+                        <CircularProgress />
+                    </Box>
+                )
+                : (
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            background: theme.palette.mode == 'dark' ? '#0b0a05' : '#f4f5fa',
+                        }}
+                    >
+                        <CssBaseline />
 
-                            <Drawer variant="permanent" open={isDrawerOpen}>
-                                <Toolbar sx={{ justifyContent: 'center' }}>
-                                    <img src="/vendor/cms/img/yago-content.svg" width="70" />
-                                </Toolbar>
+                        <Drawer variant="permanent" open={isDrawerOpen}>
+                            <Toolbar sx={{ justifyContent: 'center' }}>
+                                <img src="/vendor/cms/img/yago-content.svg" width="70" />
+                            </Toolbar>
 
-                                {menuGroups.map((menuGroup, i) => <Box key={i}>
-                                    <List component="nav">
-                                        {menuGroup.map((menu, j) => <MenuItem menu={menu} key={j} />)}
-                                    </List>
+                            {menuGroups.map((menuGroup, i) => <Box key={i}>
+                                <List component="nav">
+                                    {menuGroup.map((menu, j) => <MenuItem menu={menu} key={j} />)}
+                                </List>
 
-                                    {(i + 1 != menuGroups.length) && <Divider />}
-                                </Box>
-                                )}
-                            </Drawer>
-
-                            <Box
-                                component="main"
-                                sx={{
-                                    flexGrow: 1,
-                                    height: '100vh',
-                                    overflow: 'auto',
-                                }}
-                            >
-                                <AppBar position="static" elevation={0}>
-                                    <Toolbar sx={{ justifyContent: 'space-between' }}>
-                                        <Typography>
-                                            {/* {getMeResult.data && getMeResult.data.me.name} */}
-                                        </Typography>
-
-                                        <Button color="secondary" onClick={handleLogout}>Log out</Button>
-                                    </Toolbar>
-                                </AppBar>
-
-                                <Routes>
-                                    {routes.map((route, i) => (
-                                        <Route
-                                            key={i}
-                                            path={route.path}
-                                            exact={!!route.exact}
-                                            element={route.component}
-                                        />
-                                    ))}
-                                </Routes>
+                                {(i + 1 != menuGroups.length) && <Divider />}
                             </Box>
+                            )}
+                        </Drawer>
+
+                        <Box
+                            component="main"
+                            sx={{
+                                flexGrow: 1,
+                                height: '100vh',
+                                overflow: 'auto',
+                            }}
+                        >
+                            <AppBar position="static" elevation={0}>
+                                <Toolbar sx={{ justifyContent: 'space-between' }}>
+                                    <Typography>
+                                        {/* {getMeResult.data && getMeResult.data.me.name} */}
+                                    </Typography>
+
+                                    <Button color="secondary" onClick={handleLogout}>Log out</Button>
+                                </Toolbar>
+                            </AppBar>
+
+                            <Routes>
+                                {routes.map((route, i) => (
+                                    <Route
+                                        key={i}
+                                        path={route.path}
+                                        exact={!!route.exact}
+                                        element={route.component}
+                                    />
+                                ))}
+                            </Routes>
                         </Box>
-                    )}
-            </LocalizationProvider>
+                    </Box>
+                )}
         </ThemeProvider>
     );
 };

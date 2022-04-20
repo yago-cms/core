@@ -4,12 +4,12 @@ import { useController } from 'react-hook-form';
 
 export const defaultConfig = {
     plugins: [
-        'advlist autolink lists link image charmap print preview anchor',
-        'searchreplace visualblocks code fullscreen',
-        'insertdatetime media table paste code help wordcount'
+        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+        'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+        'insertdatetime', 'media', 'table', 'preview', 'help', 'wordcount'
     ],
-    toolbar: 'undo redo | formatselect | ' +
-        'bold italic backcolor | alignleft aligncenter ' +
+    toolbar: 'undo redo | blocks | ' +
+        'bold italic forecolor | alignleft aligncenter ' +
         'alignright alignjustify | bullist numlist outdent indent | ' +
         'removeformat | help',
 };
@@ -30,10 +30,10 @@ export const Wysiwyg = ({ name, ...props }) => {
         <Editor
             init={{
                 ...defaultConfig,
-                skin: prefersDarkMode ? 'oxide-dark' : '',
+                skin: prefersDarkMode ? 'oxide-dark' : 'oxide',
                 content_css: prefersDarkMode ? 'dark' : '',
             }}
-            tinymceScriptSrc="/backend/js/tinymce/tinymce.min.js"
+            tinymceScriptSrc="/vendor/cms/js/tinymce/tinymce.min.js"
             value={value}
             onEditorChange={onChange}
             {...props}

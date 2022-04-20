@@ -29,6 +29,7 @@ module.exports = {
             '@fortawesome/react-fontawesome',
             '@googlemaps/react-wrapper',
             'tinymce',
+            'date-fns',
         ],
     },
     output: {

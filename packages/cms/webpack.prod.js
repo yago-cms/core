@@ -1,5 +1,6 @@
 const path = require('path');
 const { DllReferencePlugin } = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -35,6 +36,11 @@ module.exports = {
         new DllReferencePlugin({
             context: __dirname,
             manifest: require('./public/js/vendor-manifest.json')
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: '../../node_modules/tinymce', to: './tinymce' },
+            ],
         }),
     ]
 };

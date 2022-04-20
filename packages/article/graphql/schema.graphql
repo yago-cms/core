@@ -1,0 +1,84 @@
+extend type Query {
+    article(id: ID @eq): Article @guard @find
+    articles: [Article!]! @guard @all
+
+    articleCategory(id: ID @eq): ArticleCategory @guard @find
+    articleCategories: [ArticleCategory!]! @guard @all
+}
+
+extend type Mutation {
+    upsertArticle(input: UpsertArticleInput! @spread): Article! @guard @upsert
+
+    upsertArticleCategory(input: UpsertArticleCategoryInput! @spread): ArticleCategory! @guard @upsert
+
+}
+
+# Article
+type Article {
+    id: ID!
+
+    articleCategories: [ArticleCategory]! @belongsToMany
+    articleMedias: [ArticleMedia]! @hasMany
+
+    name: String!
+    slug: String!
+    start: DateTime!
+    stop: DateTime
+    content: String!
+    excerpt: String
+}
+
+input UpsertArticleInput {
+    id: ID
+
+    articleCategories: UpdateArticleCategoriesBelongsToMany
+    articleMedias: UpsertArticleMediasHasMany
+
+    name: String!
+    slug: String!
+    start: DateTime!
+    stop: DateTime
+    content: String!
+    excerpt: String
+}
+
+input UpdateArticleCategoriesBelongsToMany {
+    sync: [ID!]
+}
+
+input UpsertArticleMediasHasMany {
+    upsert: [UpsertArticleMediaInput!]
+    delete: [ID!]
+}
+
+# Article category
+type ArticleCategory {
+    id: ID!
+
+    name: String!
+    slug: String!
+}
+
+input UpsertArticleCategoryInput {
+    id: ID
+
+    name: String!
+    slug: String!
+}
+
+# ArticleMedia
+type ArticleMedia {
+    id: ID!
+
+    article: Article!
+
+    source: String!
+    alt: String
+}
+
+input UpsertArticleMediaInput {
+    id: ID
+
+    source: String!
+    alt: String
+}
