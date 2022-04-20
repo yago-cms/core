@@ -20,7 +20,7 @@ jobs:
         run: npm run production -w @yago/cms
       
       - name: Upload vendor manifest
-        uses: actions/upload-artifacts@v3
+        uses: actions/upload-artifact@v3
         with:
           name: vendor-manifest
           path: ./packages/cms/public/vendor-manifest.json
