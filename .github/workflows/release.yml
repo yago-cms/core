@@ -23,7 +23,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: vendor-manifest
-          path: ${{ github.workspace }}/packages/cms/public/vendor-manifest.json
+          path: ${{ github.workspace }}/packages/cms/public/js/vendor-manifest.json
 
   build:
     runs-on: ubuntu-latest
