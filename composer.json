@@ -17,7 +17,7 @@
         "psr-4": {
             "App\\": "packages/yago/app/",
             "Database\\Factories\\": "packages/yago/database/factories/",
-            "Database\\Seeders\\": "packages/yago/database/seeders/",
+            "Database\\Seeders\\": ["packages/yago/database/seeders/", "packages/cms/database/seeders/"],
             "Yago\\Cms\\": "packages/cms/src/",
             "Yago\\Article\\": "packages/article/src/",
             "Yago\\Faq\\": "packages/faq/src/"

@@ -32,7 +32,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Yago\\Cms\\": "src/"
+            "Yago\\Cms\\": "src/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {

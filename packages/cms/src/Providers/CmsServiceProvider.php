@@ -72,9 +72,5 @@ class CmsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../public' => public_path('vendor/cms'),
         ], 'public');
-
-        $this->publishes([
-            __DIR__ . '/../../database/seeders' => database_path('seeders'),
-        ], 'seeds');
     }
 }
