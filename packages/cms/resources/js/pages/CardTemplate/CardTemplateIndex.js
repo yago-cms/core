@@ -46,7 +46,7 @@ export const CardTemplateIndex = () => {
         <Page
             heading="Card templates"
             fab={{
-                handleClick: () => navigate('/page/cards/create'),
+                handleClick: () => navigate('/pages/cards/create'),
                 icon: faPlus,
             }}
         >

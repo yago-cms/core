@@ -70,12 +70,12 @@ class Card extends Component
         $component = "cards.{$card['key']}";
 
         if (!View::exists('components.' . $component)) {
-            $component = 'cards.default';
+            $component = 'yago-cms::cards.default';
         }
 
-        return view('components.blocks.card', [
+        return view('yago-cms::components.blocks.card', [
             'card' => $card,
-            'component' => $component,
+            'component' => "{$component}",
         ]);
     }
 }

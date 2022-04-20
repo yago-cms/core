@@ -5,7 +5,7 @@
         <ul>
             @foreach ($page->descendants as $page)
                 @if ($page->is_shown_in_menu)
-                    <x-core.page-nav-item :page="$page" :level="++$level" :depth="$depth" />
+                    <x-yago-cms::core.page-nav-item :page="$page" :level="++$level" :depth="$depth" />
                 @endif
             @endforeach
         </ul>

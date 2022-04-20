@@ -31,6 +31,6 @@ class Listing extends Component
             return null;
         }
 
-        return view('components.blocks.listing', compact('content'));
+        return view('yago-cms::components.blocks.listing', compact('content'));
     }
 }

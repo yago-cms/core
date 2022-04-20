@@ -31,6 +31,6 @@ class Html extends Component
             return null;
         }
 
-        return view('components.blocks.html', compact('content'));
+        return view('yago-cms::components.blocks.html', compact('content'));
     }
 }

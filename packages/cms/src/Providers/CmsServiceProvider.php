@@ -2,9 +2,9 @@
 
 namespace Yago\Cms\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory as ModelFactory;
 use Yago\Cms\Helpers\CardHelper;
 use Yago\Cms\Helpers\MediaHelper;
 use Yago\Cms\Helpers\ModuleHelper;
@@ -42,16 +42,12 @@ class CmsServiceProvider extends ServiceProvider
         ]);
 
         // Services
-        $this->app->singleton(BlockService::class, function () {
-            return new BlockService;
+        $this->app->singleton(ModuleService::class, function () {
+            return new ModuleService;
         });
 
         $this->app->singleton(MenuService::class, function () {
             return new MenuService;
-        });
-
-        $this->app->singleton(ModuleService::class, function () {
-            return new ModuleService;
         });
 
         // Helpers
@@ -72,5 +68,11 @@ class CmsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../public' => public_path('vendor/cms'),
         ], 'public');
+
+        // $this->loadViewComponentsAs('yago-cms', [
+        //     Carousel::class,
+        // ]);
+
+        Blade::componentNamespace('Yago\\Cms\\View\\Components', 'yago-cms');
     }
 }

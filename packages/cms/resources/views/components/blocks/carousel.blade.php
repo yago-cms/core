@@ -14,7 +14,7 @@ $isStopOnLastSlide = $isAutoplay && $options->autoplay->stopOnLastSlide ?? false
 $delay = $isAutoplay ? $options->autoplay->delay ?? 0 : false;
 @endphp
 
-<x-core.carousel
+<x-yago-cms::core.carousel
     :id="$id"
     :type="$content->type"
 

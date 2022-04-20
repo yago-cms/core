@@ -9,17 +9,17 @@ use Yago\Cms\Models\Page;
 use Yago\Cms\Models\PageRevision;
 use Yago\Cms\Models\Settings;
 use Yago\Cms\Services\AbstractDataProviderService;
-use Yago\Cms\Services\BlockService;
+use Yago\Cms\Services\ModuleService;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
 
 class FrontendController extends Controller
 {
-    protected $blockService;
+    protected $moduleService;
 
-    public function __construct(BlockService $blockService)
+    public function __construct(ModuleService $moduleService)
     {
-        $this->blockService = $blockService;
+        $this->moduleService = $moduleService;
     }
 
     public function index()
@@ -55,22 +55,22 @@ class FrontendController extends Controller
             }
 
             // the last segment maybe resolves to a stored object
-            $modules = $this->blockService->getModules();
+            $moduleBlocks = $this->moduleService->getBlocks();
 
             $hasModule = false;
 
             // check page blocks for registered modules
             foreach ($page->pageBlocks as $pageBlock) {
-                foreach ($modules as $module) {
-                    if ($pageBlock['type'] == $module['type']) {
-                        $hasModule = true;
+                foreach ($moduleBlocks as $moduleBlock) {
+                    if ($pageBlock['type'] == $moduleBlock['type']) {
+                        $hasModuleBlock = true;
 
                         break;
                     }
                 }
             }
 
-            if (!$hasModule) {
+            if (!$hasModuleBlock) {
                 abort(404);
             }
 
@@ -145,16 +145,16 @@ class FrontendController extends Controller
         // page sections
         $pageSections = $page->pageSections();
 
-        $modules = $this->blockService->getModules();
+        $moduleBlocks = $this->moduleService->getBlocks();
 
         $lastSegment = last(request()->segments());
 
         foreach ($pageSections as &$pageSection) {
             foreach ($pageSection['pageBlocks'] as &$pageBlock) {
-                foreach ($modules as $module) {
-                    if ($pageBlock['type'] == $module['type'] && $module['depth'] == $depth) {
-                        $controller = $module['method'][0];
-                        $action = $module['method'][1];
+                foreach ($moduleBlocks as $moduleBlock) {
+                    if ($pageBlock['type'] == $moduleBlock['type'] && $moduleBlock['depth'] == $depth) {
+                        $controller = $moduleBlock['method'][0];
+                        $action = $moduleBlock['method'][1];
 
                         $response = app()->call("{$controller}@{$action}", [
                             'config' => json_decode($pageBlock['content']),
@@ -163,7 +163,7 @@ class FrontendController extends Controller
 
                         $pageBlock['view'] = $response;
 
-                        if ($module['override'] === true) {
+                        if ($moduleBlock['override'] === true) {
                             foreach ($pageSection['pageBlocks'] as $i => $otherPageBlock) {
                                 if ($pageBlock !== $otherPageBlock) {
                                     unset($pageSection['pageBlocks'][$i]);

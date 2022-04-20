@@ -184,6 +184,16 @@ export const CardTemplateForm = () => {
         }
     }, [getCardTemplateResult.loading, getCardTemplateResult.data]);
 
+    useEffect(() => {
+        const subscription = methods.watch((value, { name, type }) => {
+          if (name === 'name') {
+            methods.setValue('key', _.kebabCase(value.name));
+          }
+        });
+
+        return () => subscription.unsubscribe();
+      }, [methods.watch]);
+
     if (isLoading) return <Loading />;
     if (error) return <Error message={error.message} />;
 
@@ -202,7 +212,6 @@ export const CardTemplateForm = () => {
                     <Input
                         label="Key"
                         name="key"
-                        value={_.kebabCase(watchName)}
                         disabled
                     />
                 </PageContent>

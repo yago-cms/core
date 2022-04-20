@@ -77,12 +77,12 @@ class Accordion extends Component
             $cardComponent = "cards.{$cardTemplateKey}";
 
             if (!View::exists('components.' . $cardComponent)) {
-                $cardComponent = 'cards.default';
+                $cardComponent = 'yago-cms::cards.default';
             }
 
-            return view('components.blocks.accordion', compact('content', 'cards', 'cardComponent'));
+            return view('yago-cms::components.blocks.accordion', compact('content', 'cards', 'cardComponent'));
         }
 
-        return view('components.blocks.accordion', compact('content'));
+        return view('yago-cms::components.blocks.accordion', compact('content'));
     }
 }

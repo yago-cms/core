@@ -1,24 +1,13 @@
-import { faPlus, faTimes } from "@fortawesome/pro-duotone-svg-icons";
+import { faTimes } from "@fortawesome/pro-duotone-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Box, Card, Divider, Drawer, Fab, Grid, IconButton, Paper, Stack, Typography } from "@mui/material";
-import { blueGrey } from "@mui/material/colors";
-import { useState } from "react";
+import { Box, Divider, Drawer, Grid, IconButton, Paper, Stack, Typography } from "@mui/material";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { contentTypeGroups } from "../../module";
 import ContentBlock from "./ContentBlock";
 import ContentTypeList from "./ContentTypeList";
 
 const getContentTypes = (contentTypeGroups) =>
     contentTypeGroups.map(contentTypeGroup => contentTypeGroup.types).flat();
-
-// Merge default and vendor configs
-export let contentTypeGroups = require('../../content-editor').contentTypeGroups;
-export let contentTypeModules = require('../../content-editor').contentTypeModules;
-// let contentEditorFiles = require.context('../../../vendor/', true, /content-editor\/index\.js$/i);
-
-// contentEditorFiles.keys().forEach(file => {
-//     contentTypeGroups = contentTypeGroups.concat(contentEditorFiles(file).contentTypeGroups);
-//     contentTypeModules = contentTypeModules.concat(contentEditorFiles(file).contentTypeModules ?? []);
-// });
 
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -54,6 +43,7 @@ const insert = (list, index, block) => {
 };
 
 export const ContentBlockEditor = ({ sections, isDrawerOpen, setIsDrawerOpen, handleChange }) => {
+
     const handleDragEnd = ({ draggableId, source, destination }) => {
         if (!destination) {
             return;

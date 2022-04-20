@@ -1,3 +1,3 @@
 @foreach ($blocks as $block)
-    <x-core.block :block="$block" />
+    <x-yago-cms::core.block :block="$block" />
 @endforeach

@@ -37,6 +37,6 @@ class Media extends Component
             $medias = $content->medias;
         }
 
-        return view('components.blocks.media', compact('content', 'medias'));
+        return view('yago-cms::components.blocks.media', compact('content', 'medias'));
     }
 }

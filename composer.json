@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "packages/yago/app/",
+            "App\\": ["app/", "packages/yago/app/"],
             "Database\\Factories\\": "packages/yago/database/factories/",
             "Database\\Seeders\\": ["packages/yago/database/seeders/", "packages/cms/database/seeders/"],
             "Yago\\Cms\\": "packages/cms/src/",

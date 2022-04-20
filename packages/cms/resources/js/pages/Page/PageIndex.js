@@ -258,7 +258,7 @@ export const PageIndex = () => {
       }}
     >
       <PageContent>
-        {getPagesResult.data.length > 0 ? (
+        {getPagesResult.data.pages.length > 0 ? (
           <Tree
             tree={tree}
             renderItem={renderItem}

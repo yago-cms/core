@@ -7,7 +7,7 @@
                 @break
 
                 @case('media')
-                    <x-core.picture :media="$item['content']->source" :breakpointGroup="$item['content']->breakpointGroup" />
+                    <x-yago-cms::core.picture :media="$item['content']->source" :breakpointGroup="$item['content']->breakpointGroup" />
                 @break
 
                 @case('cta')

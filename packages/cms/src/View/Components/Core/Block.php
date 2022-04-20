@@ -34,13 +34,13 @@ class Block extends Component
         if (!isset($componentAliases[$component]) && empty($this->block['view'])) {
             $component = str_replace('yago-', 'blocks.', $component);
 
-            if (!View::exists('components.' . $component)) {
+            if (!View::exists('yago-cms::components.' . $component)) {
                 return;
             }
         }
 
-        return view('components.core.block', [
-            'component' => $component,
+        return view('yago-cms::components.core.block', [
+            'component' => "yago-cms::{$component}",
             'block' => $this->block,
         ]);
     }

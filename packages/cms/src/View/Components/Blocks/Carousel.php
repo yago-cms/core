@@ -76,13 +76,13 @@ class Carousel extends Component
             $component = "cards.{$cardTemplateKey}";
 
             if (!View::exists('components.' . $component)) {
-                $component = 'cards.default';
+                $component = 'yago-cms::cards.default';
             }
 
-            return view('components.blocks.carousel', compact('content', 'cards', 'component'));
+            return view('yago-cms::components.blocks.carousel', compact('content', 'cards', 'component'));
         }
 
-        return view('components.blocks.carousel', [
+        return view('yago-cms::components.blocks.carousel', [
             'content' => $content,
             'data' => $this->block['data'] ?? null,
         ]);

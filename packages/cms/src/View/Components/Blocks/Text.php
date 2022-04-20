@@ -28,6 +28,6 @@ class Text extends Component
     {
         $content = $this->block['content'];
 
-        return view('components.blocks.text', compact('content'));
+        return view('yago-cms::components.blocks.text', compact('content'));
     }
 }

@@ -10,7 +10,6 @@ extend type Mutation {
     upsertArticle(input: UpsertArticleInput! @spread): Article! @guard @upsert
 
     upsertArticleCategory(input: UpsertArticleCategoryInput! @spread): ArticleCategory! @guard @upsert
-
 }
 
 # Article

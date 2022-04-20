@@ -39,7 +39,7 @@ $isBreakpoints = $breakpoints ?? false;
                     @if ($tabType == 'text')
                         {{ $tab->content }}
                     @elseif ($tabType == 'media')
-                        <x-core.picture :media="$tab->content" :breakpointGroup="$breakpoint" />
+                        <x-yago-cms::core.picture :media="$tab->content" :breakpointGroup="$breakpoint" />
                     @endif
                 </div>
             @endforeach
@@ -59,7 +59,7 @@ $isBreakpoints = $breakpoints ?? false;
                 @foreach ($slides as $slide)
                     <div class="swiper-slide"
                         @if ($isTabs) data-swiper-tab="#swiper-tab-{{ $i }}" @endif>
-                        <x-core.picture :media="$slide->media" :breakpointGroup="$breakpoint" />
+                        <x-yago-cms::core.picture :media="$slide->media" :breakpointGroup="$breakpoint" />
 
                         @if ($isCaptions)
                             <div class="swiper-slide__inner-wrap">
@@ -71,7 +71,7 @@ $isBreakpoints = $breakpoints ?? false;
                         @endif
                     </div>
                 @endforeach
-            @elseif ($type == 'module')
+            @elseif ($type == 'module' && !empty($module))
                 <x-dynamic-component component="yago-{{ $module }}" :data="$moduleData" />
             @endif
         </div>

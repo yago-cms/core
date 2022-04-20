@@ -31,6 +31,6 @@ class Heading extends Component
             return null;
         }
 
-        return view('components.blocks.heading', compact('content'));
+        return view('yago-cms::components.blocks.heading', compact('content'));
     }
 }

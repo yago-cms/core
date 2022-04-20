@@ -1,11 +1,18 @@
 export const modules = [];
+export let contentTypeGroups = require('./content-editor').contentTypeGroups;
+export let contentTypeModules = require('./content-editor').contentTypeModules;
 
-export const registerModule = (module, routes, menus) => {
+export const registerModule = (module, routes, menus, moduleContentTypeGroups, moduleContentTypeModules) => {
     modules.push({
         module,
         routes,
         menus,
+        moduleContentTypeGroups,
+        moduleContentTypeModules,
     });
+
+    contentTypeGroups = contentTypeGroups.concat(moduleContentTypeGroups);
+    contentTypeModules = contentTypeModules.concat(moduleContentTypeModules);
 };
 
 export { Checkbox } from "./components/Form/Checkbox";
@@ -28,3 +35,4 @@ export { PageContent } from "./components/Page";
 export { PageCard } from "./components/PageCard";
 export { FieldActions } from "./components/Field";
 export * as Map from "./components/Map";
+export { usePrompt } from "./tmp-prompt";

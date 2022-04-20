@@ -31,6 +31,6 @@ class Lead extends Component
             return null;
         }
 
-        return view('components.blocks.lead', compact('content'));
+        return view('yago-cms::components.blocks.lead', compact('content'));
     }
 }

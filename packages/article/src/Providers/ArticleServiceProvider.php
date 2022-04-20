@@ -4,6 +4,8 @@ namespace Yago\Article\Providers;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Yago\Article\Http\Controllers\ArticleController;
+use Yago\Article\View\Components\Carousel;
 use Yago\Cms\Services\ModuleService;
 
 class ArticleServiceProvider extends ServiceProvider
@@ -29,8 +31,16 @@ class ArticleServiceProvider extends ServiceProvider
     {
         $moduleService->register('article');
 
+        $moduleService->registerBlock('article', 'article-featured', [ArticleController::class, 'featured']);
+
+        $moduleService->registerBlock('article', 'article-listing', [ArticleController::class, 'listing'], 0);
+        $moduleService->registerBlock('article', 'article-listing', [ArticleController::class, 'show'], 1);
+
         $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations/');
-        // $this->loadViewsFrom(__DIR__ . '/../../resources/frontend/views', 'yago-article');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'yago-article');
+        $this->loadViewComponentsAs('yago-article', [
+            Carousel::class,
+        ]);
 
         $this->publishes([
             __DIR__ . '/../../public' => public_path('vendor/article'),

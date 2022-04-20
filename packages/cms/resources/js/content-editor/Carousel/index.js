@@ -3,7 +3,6 @@ import { Box, Chip, Divider, FormGroup, Grid, styled, Typography } from "@mui/ma
 import { forwardRef, useEffect, useImperativeHandle } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import * as yup from "yup";
-import { contentTypeModules } from "../../components/ContentBlockEditor";
 import { Error } from "../../components/Error";
 import { Checkbox } from "../../components/Form/Checkbox";
 import { Input } from "../../components/Form/Input";
@@ -13,6 +12,7 @@ import { usePrompt } from "../../tmp-prompt";
 import { Breakpoints } from "./Breakpoints";
 import { CardFields } from "./CardFields";
 import { Slides } from "./Slides";
+import { contentTypeModules } from "../../module";
 
 const schema = yup.object({
     options: yup.object().shape({

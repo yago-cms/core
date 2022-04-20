@@ -17,7 +17,7 @@ const schema = yup.object({
   start: yup.date().required(),
   stop: yup.date().nullable(),
   content: yup.string().required(),
-  excerpt: yup.string(),
+  excerpt: yup.string().nullable(),
   categories: yup.array(),
   medias: yup.array().of(
     yup.object().shape({

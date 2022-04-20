@@ -1,3 +1,5 @@
+@inject('moduleService', 'Yago\\Cms\\Services\\ModuleService')
+
 <!doctype html>
 <html lang="en">
 
@@ -29,7 +31,7 @@
     <script src="/vendor/cms/js/app.js"></script>
     @endenv
 
-    {!! ModuleHelper::getScripts() !!}
+    {!! $moduleService->getScripts() !!}
 
     @stack('scripts')
 </body>

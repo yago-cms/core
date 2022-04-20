@@ -1,3 +1,3 @@
 @foreach ($medias as $media)
-    <x-core.picture :media="$media->source" :breakpointGroup="$content->breakpoint" />
+    <x-yago-cms::core.picture :media="$media->source" :breakpointGroup="$content->breakpoint" />
 @endforeach

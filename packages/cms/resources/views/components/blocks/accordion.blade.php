@@ -6,11 +6,11 @@ $isUseLabelAsId = $content->useLabelAsId;
 @endphp
 
 @if ($content->type == 'card')
-    <x-core.accordion
+    <x-yago-cms::core.accordion
         :id="$id"
     >
         @foreach ($cards as $i => $card)
-            <x-core.accordion.item
+            <x-yago-cms::core.accordion.item
                 :id="$id"
                 :i="$i"
                 :label="$card['label']"
@@ -19,15 +19,15 @@ $isUseLabelAsId = $content->useLabelAsId;
                 :is-use-label-as-id="$isUseLabelAsId"
             >
                 <x-dynamic-component :component="$cardComponent" :card="$card" />
-            </x-core.accordion.item>
+            </x-yago-cms::core.accordion.item>
         @endforeach
-    </x-core.accordion>
+    </x-yago-cms::core.accordion>
 @elseif ($content->type == 'text')
-    <x-core.accordion
+    <x-yago-cms::core.accordion
         :id="$id"
     >
         @foreach ($content->texts as $i => $text)
-            <x-core.accordion.item
+            <x-yago-cms::core.accordion.item
                 :id="$id"
                 :i="$i"
                 :label="$text->label"
@@ -38,7 +38,7 @@ $isUseLabelAsId = $content->useLabelAsId;
                 @if (isset($text->text))
                     {!! $text->text !!}
                 @endif
-            </x-core.accordion.item>
+            </x-yago-cms::core.accordion.item>
         @endforeach
-    </x-core.accordion>
+    </x-yago-cms::core.accordion>
 @endif

@@ -52,6 +52,6 @@ class PageSection extends Component
             }
         }
 
-        return view('components.core.block-list', compact('blocks'));
+        return view('yago-cms::components.core.block-list', compact('blocks'));
     }
 }

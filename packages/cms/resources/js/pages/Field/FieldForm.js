@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { faArrowLeft, faPlus } from "@fortawesome/pro-duotone-svg-icons";
+import { faPlus } from "@fortawesome/pro-duotone-svg-icons";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button } from "@mui/material";
 import { useEffect, useState } from "react";

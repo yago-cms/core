@@ -4,7 +4,7 @@ import { Box, Button, Card, CardContent, CardHeader, Dialog, DialogActions, Dial
 import { Editor } from '@tinymce/tinymce-react';
 import { Children, cloneElement, isValidElement, useMemo, useRef, useState } from "react";
 import sanitizeHtml from 'sanitize-html';
-import { contentTypeGroups } from ".";
+import { contentTypeGroups } from "../../module";
 import { defaultConfig } from "../Form/Wysiwyg";
 
 export const truncateOptions = {
@@ -129,10 +129,10 @@ export default function ContentBlock({
         <Editor
             init={{
                 ...defaultConfig,
-                skin: prefersDarkMode ? 'oxide-dark' : '',
+                skin: prefersDarkMode ? 'oxide-dark' : 'oxide',
                 content_css: prefersDarkMode ? 'dark' : '',
             }}
-            tinymceScriptSrc="/backend/js/tinymce/tinymce.min.js"
+            tinymceScriptSrc="/vendor/cms/js/tinymce/tinymce.min.js"
             initialValue={content}
             onInit={(evt, editor) => editorRef.current = editor}
             onEditorChange={handleChange}

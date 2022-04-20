@@ -31,6 +31,6 @@ class Cta extends Component
             return null;
         }
 
-        return view('components.blocks.cta', compact('content'));
+        return view('yago-cms::components.blocks.cta', compact('content'));
     }
 }
