@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc8b92b8ef10fca9ad98db3da11035c6",
+    "content-hash": "6b118ede1a3e191f4e42713dc90b47d6",
     "packages": [
         {
             "name": "brick/math",
@@ -6090,6 +6090,45 @@
             "autoload-dev": {
                 "psr-4": {
                     "Yago\\Cms\\Tests\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Johan Grönberg",
+                    "email": "johan@formsmedjan.se"
+                }
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "yago-cms/faq",
+            "version": "3.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/faq",
+                "reference": "9493c3ba8b7836a084a6e98bb973f78ab65f1557"
+            },
+            "type": "library",
+            "extra": {
+                "yago": {
+                    "name": "faq"
+                },
+                "laravel": {
+                    "providers": [
+                        "Yago\\Faq\\Providers\\FaqServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yago\\Faq\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Yago\\Faq\\Tests\\": "tests/"
                 }
             },
             "authors": [

@@ -1,10 +1,27 @@
 {
     "private": true,
     "workspaces": [
-        "packages/yago"
+        "./packages/*"
     ],
+    "watch": {
+        "publish-cms": "packages/cms/public",
+        "publish-article": "packages/article/public",
+        "publish-faq": "packages/faq/public"
+    },
+    "scripts": {
+        "publish-cms": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\Cms\\Providers\\CmsServiceProvider\" --force",
+        "publish-article": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\Article\\Providers\\ArticleServiceProvider\" --force",
+        "publish-faq": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\Faq\\Providers\\FaqServiceProvider\" --force",
+        "watch": "npm-watch"
+    },
     "prettier": {
         "printWidth": 120,
         "singleQuote": true
+    },
+    "devDependencies": {
+        "@atlaskit/tree": "^8.6.0",
+        "@hookform/resolvers": "^2.8.8",
+        "npm-watch": "^0.11.0",
+        "yup": "^0.32.11"
     }
 }

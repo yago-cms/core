@@ -10,33 +10,34 @@
     "require": {
         "laravel/sail": "^1.12",
         "yago-cms/article": "self.version",
-        "yago-cms/cms": "self.version"
+        "yago-cms/cms": "self.version",
+        "yago-cms/faq": "^3.0"
     },
     "autoload": {
         "psr-4": {
             "App\\": "packages/yago/app/",
             "Database\\Factories\\": "packages/yago/database/factories/",
             "Database\\Seeders\\": "packages/yago/database/seeders/",
+            "Yago\\Cms\\": "packages/cms/src/",
             "Yago\\Article\\": "packages/article/src/",
-            "Yago\\Cms\\": "packages/cms/src/"
+            "Yago\\Faq\\": "packages/faq/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "packages/yago/tests/",
+            "Yago\\Cms\\Tests\\": "packages/cms/tests/",
             "Yago\\Article\\Tests\\": "packages/article/tests/",
-            "Yago\\Cms\\Tests\\": "packages/cms/tests/"
+            "Yago\\Faq\\Tests\\": "packages/faq/tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
                 "Yago\\Cms\\Providers\\CmsServiceProvider",
-                "Yago\\Article\\Providers\\ArticleServiceProvider"
+                "Yago\\Article\\Providers\\ArticleServiceProvider",
+                "Yago\\Faq\\Providers\\FaqServiceProvider"
             ]
-        },
-        "yago": {
-            "name": "article"
         }
     },
     "config": {
@@ -54,6 +55,10 @@
         {
             "type": "path",
             "url": "packages/article"
+        },
+        {
+            "type": "path",
+            "url": "packages/faq"
         }
     ],
     "scripts": {

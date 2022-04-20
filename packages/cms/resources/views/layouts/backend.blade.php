@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <link href="{{ mix('backend/css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ mix('backend/css/app.css') }}" rel="stylesheet"> --}}
 
     <title>@yield('title')</title>
 </head>
@@ -19,9 +19,17 @@
 <body class="body">
     <div id="app"></div>
 
-    <script src="{{ mix('backend/js/manifest.js') }}"></script>
-    <script src="{{ mix('backend/js/vendor.js') }}"></script>
-    <script src="{{ mix('backend/js/app.js') }}"></script>
+    @env('production')
+    <script src="/vendor/cms/js/vendor.min.js"></script>
+    <script src="/vendor/cms/js/app.min.js"></script>
+    @endenv
+
+    @env('local')
+    <script src="/vendor/cms/js/vendor.js"></script>
+    <script src="/vendor/cms/js/app.js"></script>
+    @endenv
+
+    {!! ModuleHelper::getScripts() !!}
 
     @stack('scripts')
 </body>
