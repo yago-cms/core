@@ -74,14 +74,7 @@ jobs:
         with:
           repository: yago-cms/cms
           token: ${{ secrets.ACCESS_TOKEN }}
-
-      - name: Upload dist zip to release
-        uses: actions/upload-release-asset@v1.0.2
-        with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/packages/cms/resources/dist.tar.gz
-          asset_name: dist.tar.gz
-          asset_content_type: application/tar+gz
+          files: ${{ github.workspace }}/packages/cms/resources/dist.tar.gz
 
   build:
     runs-on: ubuntu-latest
@@ -134,11 +127,4 @@ jobs:
         with:
           repository: yago-cms/${{ matrix.package }}
           token: ${{ secrets.ACCESS_TOKEN }}
-
-      - name: Upload dist zip to release
-        uses: actions/upload-release-asset@v1.0.2
-        with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/packages/${{ matrix.package }}/resources/dist.tar.gz
-          asset_name: dist.tar.gz
-          asset_content_type: application/tar+gz
+          files: ${{ github.workspace }}/packages/${{ matrix.package }}/resources/dist.tar.gz
