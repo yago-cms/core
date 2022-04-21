@@ -27,12 +27,12 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'public', 'js'),
+        path: path.resolve(__dirname, 'resources', 'dev', 'js'),
     },
     plugins: [
         new DllReferencePlugin({
             context: path.resolve(__dirname, '..', 'cms'),
-            manifest: require('../cms/public/js/vendor-manifest.json')
+            manifest: require('../cms/resources/dev/js/vendor-manifest.json')
         }),
     ]
 };

@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: vendor-manifest
-          path: ${{ github.workspace }}/packages/cms/resources/dist/vendor-manifest.json
+          path: ${{ github.workspace }}/packages/cms/resources/dist/js/vendor-manifest.json
 
       - name: Create dist zip
         run: cd ${{ github.workspace }}/packages/cms/resources && tar -czvf dist.tar.gz dist
@@ -71,8 +71,8 @@ jobs:
 
       - name: Copy vendor manifest
         run: |
-          mkdir -p ${{ github.workspace }}/packages/cms/public/js/
-          cat vendor-manifest.json > ${{ github.workspace }}/packages/cms/public/js/vendor-manifest.json
+          mkdir -p ${{ github.workspace }}/packages/cms/resources/dist/js/
+          cat vendor-manifest.json > ${{ github.workspace }}/packages/cms/resources/dist/js/vendor-manifest.json
 
       - name: Install dependencies
         run: |
@@ -81,3 +81,24 @@ jobs:
 
       - name: Build
         run: npm run production -w @yago/${{ matrix.package }}
+
+      - name: Create dist zip
+        run: cd ${{ github.workspace }}/packages/${{ matrix.package }}/resources && tar -czvf dist.tar.gz dist
+
+      - name: Split
+        uses: symplify/monorepo-split-github-action@2.1
+        with:
+            package_directory: packages/${{ matrix.package }}
+
+            repository_organization: yago-cms
+            repository_name: ${{ matrix.package }}
+
+            user_name: "Johan Grönberg"
+            user_email: "johan@formsmedjan.se"
+
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          repository: yago-cms/${{ matrix.package }}
+          token: ${{ secrets.ACCESS_TOKEN }}
+          files: ${{ github.workspace }}/packages/${{ matrix.package }}/resources/dist.tar.gz
