@@ -75,10 +75,8 @@ jobs:
           repository: yago-cms/cms
           token: ${{ secrets.ACCESS_TOKEN }}
 
-      - name: Upload dist zip
+      - name: Upload dist zip to release
         uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/packages/cms/resources/dist.tar.gz
@@ -131,8 +129,16 @@ jobs:
             user_email: "pythas@gmail.com"
 
       - name: Create release
+        id: create-release
         uses: softprops/action-gh-release@v1
         with:
           repository: yago-cms/${{ matrix.package }}
           token: ${{ secrets.ACCESS_TOKEN }}
-          files: ${{ github.workspace }}/packages/${{ matrix.package }}/resources/dist.tar.gz
+
+      - name: Upload dist zip to release
+        uses: actions/upload-release-asset@v1.0.2
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/packages/${{ matrix.package }}/resources/dist.tar.gz
+          asset_name: dist.tar.gz
+          asset_content_type: application/tar+gz
