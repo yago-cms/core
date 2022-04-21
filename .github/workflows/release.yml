@@ -28,9 +28,6 @@ jobs:
       - name: Create dist zip
         run: cd ${{ github.workspace }}/packages/cms/resources && tar -czvf dist.tar.gz dist
         
-      - name: Split
-        
-        
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
