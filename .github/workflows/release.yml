@@ -25,6 +25,16 @@ jobs:
           name: vendor-manifest
           path: ${{ github.workspace }}/packages/cms/public/js/vendor-manifest.json
 
+      - name: Create dist zip
+        run: cd public && tar -czvf dist.tar.gz dist
+        
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          repository: yago-cms/cms
+          files: public/dist.tar.gz
+
+
   build:
     runs-on: ubuntu-latest
     needs: build-cms
@@ -43,7 +53,7 @@ jobs:
         with:
           name: vendor-manifest
       
-      - name: Test
+      - name: Copy vendor manifest
         run: |
           mkdir -p ${{ github.workspace }}/packages/cms/public/js/
           cat vendor-manifest.json > ${{ github.workspace }}/packages/cms/public/js/vendor-manifest.json
