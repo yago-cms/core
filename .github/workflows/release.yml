@@ -10,25 +10,28 @@ env:
 
 jobs:
   build-yago:
-    - name: Checkout
-      uses: actions/checkout@v3
+    runs-on: ubuntu-latest
 
-    - name: Split
-      uses: symplify/monorepo-split-github-action@2.1
-      with:
-          package_directory: packages/yago
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-          repository_organization: yago-cms
-          repository_name: yago
+      - name: Split
+        uses: symplify/monorepo-split-github-action@2.1
+        with:
+            package_directory: packages/yago
 
-          user_name: "Johan Grönberg"
-          user_email: "johan@formsmedjan.se"
+            repository_organization: yago-cms
+            repository_name: yago
 
-    - name: Create release
-      uses: softprops/action-gh-release@v1
-      with:
-        repository: yago-cms/yago
-        token: ${{ secrets.ACCESS_TOKEN }}
+            user_name: "Johan Grönberg"
+            user_email: "johan@formsmedjan.se"
+
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          repository: yago-cms/yago
+          token: ${{ secrets.ACCESS_TOKEN }}
 
   build-cms:
     runs-on: ubuntu-latest
