@@ -6,6 +6,9 @@
             "email": "johan@formsmedjan.se"
         }
     ],
+    "require": {
+        "pixelfear/composer-dist-plugin": "^0.1.5"
+    },
     "autoload": {
         "psr-4": {
             "Yago\\Article\\": "src/"
@@ -20,6 +23,12 @@
         "yago": {
             "name": "article"
         },
+        "download-dist": [
+            {
+                "url": "https://github.com/yago-cms/article/releases/download/{$version}/dist.tar.gz",
+                "path": "resources/dist"
+            }
+        ],
         "laravel": {
             "providers": [
                 "Yago\\Article\\Providers\\ArticleServiceProvider"
