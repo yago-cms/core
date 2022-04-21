@@ -44,12 +44,12 @@ jobs:
           name: vendor-manifest
       
       - name: Test
-        run: cat vendor-manifest.json
+        run: cat vendor-manifest.json > ${{ github.workspace }}/packages/cms/public/js/vendor-manifest.json
         
-#       - name: Install dependencies
-#         run: |
-#           npm config set '//npm.fontawesome.com/:_authToken' "${{ secrets.FONTAWESOME_AUTH_TOKEN }}"
-#           npm ci
+      - name: Install dependencies
+        run: |
+          npm config set '//npm.fontawesome.com/:_authToken' "${{ secrets.FONTAWESOME_AUTH_TOKEN }}"
+          npm ci
         
-#       - name: Build
-#         run: npm run production -w @yago/${{ matrix.package }}
+      - name: Build
+        run: npm run production -w @yago/${{ matrix.package }}
