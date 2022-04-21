@@ -30,12 +30,12 @@ module.exports = {
     },
     output: {
         filename: '[name].min.js',
-        path: path.resolve(__dirname, 'public', 'js'),
+        path: path.resolve(__dirname, 'resources', 'dist', 'js'),
     },
     plugins: [
         new DllReferencePlugin({
             context: __dirname,
-            manifest: require('./public/js/vendor-manifest.json')
+            manifest: require('./resources/dist/js/vendor-manifest.json')
         }),
         new CopyPlugin({
             patterns: [
