@@ -73,7 +73,7 @@ jobs:
         with:
           repository: yago-cms/cms
           token: ${{ secrets.ACCESS_TOKEN }}
-          files: ${{ github.workspace }}/packages/cms/resources/dist.tar.gz
+          files: dist.tar.gz
 
   build:
     runs-on: ubuntu-latest
