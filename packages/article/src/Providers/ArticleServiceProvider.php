@@ -43,7 +43,7 @@ class ArticleServiceProvider extends ServiceProvider
         ]);
 
         $this->publishes([
-            __DIR__ . '/../../public' => public_path('vendor/article'),
-        ], 'public');
+            __DIR__ . '/../../resources/dist' => public_path('vendor/article'),
+        ], 'yago-article');
     }
 }

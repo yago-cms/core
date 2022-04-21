@@ -4,9 +4,9 @@
         "./packages/*"
     ],
     "watch": {
-        "publish-cms": "packages/cms/public",
-        "publish-article": "packages/article/public",
-        "publish-faq": "packages/faq/public"
+        "publish-cms": "packages/cms/resources",
+        "publish-article": "packages/article/resources",
+        "publish-faq": "packages/faq/resources"
     },
     "scripts": {
         "publish-cms": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\Cms\\Providers\\CmsServiceProvider\" --force",
