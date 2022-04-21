@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+env:
+    GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
 jobs:
   build-cms:
     runs-on: ubuntu-latest
