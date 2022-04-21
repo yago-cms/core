@@ -26,13 +26,13 @@ jobs:
           path: ${{ github.workspace }}/packages/cms/public/js/vendor-manifest.json
 
       - name: Create dist zip
-        run: cd public && tar -czvf dist.tar.gz dist
+        run: cd resources && tar -czvf dist.tar.gz dist
         
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
           repository: yago-cms/cms
-          files: public/dist.tar.gz
+          files: resources/dist.tar.gz
 
 
   build:
