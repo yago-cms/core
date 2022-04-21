@@ -9,6 +9,27 @@ env:
     GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
+  build-yago:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Split
+      uses: symplify/monorepo-split-github-action@2.1
+      with:
+          package_directory: packages/yago
+
+          repository_organization: yago-cms
+          repository_name: yago
+
+          user_name: "Johan Grönberg"
+          user_email: "johan@formsmedjan.se"
+
+    - name: Create release
+      uses: softprops/action-gh-release@v1
+      with:
+        repository: yago-cms/yago
+        token: ${{ secrets.ACCESS_TOKEN }}
+
   build-cms:
     runs-on: ubuntu-latest
 
