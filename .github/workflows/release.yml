@@ -30,13 +30,23 @@ jobs:
       - name: Create dist zip
         run: cd ${{ github.workspace }}/packages/cms/resources && tar -czvf dist.tar.gz dist
 
+      - name: Split
+        uses: 'symplify/monorepo-split-github-action@2.1'
+          with:
+              package_directory: packages/cms
+
+              repository_organization: yago-cms
+              repository_name: cms
+
+              user_name: "Johan Grönberg"
+              user_email: "johan@formsmedjan.se"
+
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
           repository: yago-cms/cms
           token: ${{ secrets.ACCESS_TOKEN }}
           files: ${{ github.workspace }}/packages/cms/resources/dist.tar.gz
-
 
   build:
     runs-on: ubuntu-latest
