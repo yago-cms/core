@@ -25,7 +25,7 @@ jobs:
             repository_name: yago
 
             user_name: "Johan Grönberg"
-            user_email: "johan@formsmedjan.se"
+            user_email: "pythas@gmail.com"
 
       - name: Create release
         uses: softprops/action-gh-release@v1
@@ -66,7 +66,7 @@ jobs:
             repository_name: cms
 
             user_name: "Johan Grönberg"
-            user_email: "johan@formsmedjan.se"
+            user_email: "pythas@gmail.com"
 
       - name: Create release
         uses: softprops/action-gh-release@v1
@@ -118,7 +118,7 @@ jobs:
             repository_name: ${{ matrix.package }}
 
             user_name: "Johan Grönberg"
-            user_email: "johan@formsmedjan.se"
+            user_email: "pythas@gmail.com"
 
       - name: Create release
         uses: softprops/action-gh-release@v1
