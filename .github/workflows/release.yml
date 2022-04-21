@@ -31,15 +31,15 @@ jobs:
         run: cd ${{ github.workspace }}/packages/cms/resources && tar -czvf dist.tar.gz dist
 
       - name: Split
-        uses: 'symplify/monorepo-split-github-action@2.1'
-          with:
-              package_directory: packages/cms
+        uses: symplify/monorepo-split-github-action@2.1
+        with:
+            package_directory: packages/cms
 
-              repository_organization: yago-cms
-              repository_name: cms
+            repository_organization: yago-cms
+            repository_name: cms
 
-              user_name: "Johan Grönberg"
-              user_email: "johan@formsmedjan.se"
+            user_name: "Johan Grönberg"
+            user_email: "johan@formsmedjan.se"
 
       - name: Create release
         uses: softprops/action-gh-release@v1
