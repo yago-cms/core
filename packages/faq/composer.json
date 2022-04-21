@@ -25,6 +25,5 @@
                 "Yago\\Faq\\Providers\\FaqServiceProvider"
             ]
         }
-    },
-    "version": "3.0.0"
+    }
 }

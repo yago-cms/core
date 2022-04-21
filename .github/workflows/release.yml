@@ -83,7 +83,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [article]
+        package: [article, faq]
 
     steps:
       - name: Checkout

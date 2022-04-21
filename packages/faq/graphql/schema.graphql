@@ -1,0 +1,23 @@
+extend type Query {
+    faq(id: ID @eq): Faq @guard @find
+    faqs: [Faq!]! @guard @all
+}
+
+extend type Mutation {
+    upsertFaq(input: UpsertFaqInput! @spread): Faq! @guard @upsert
+}
+
+# Faq
+type Faq {
+    id: ID!
+
+    name: String!
+    content: String!
+}
+
+input UpsertFaqInput {
+    id: ID
+
+    name: String!
+    content: String!
+}
