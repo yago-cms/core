@@ -44,7 +44,9 @@ jobs:
           name: vendor-manifest
       
       - name: Test
-        run: cat vendor-manifest.json > ${{ github.workspace }}/packages/cms/public/js/vendor-manifest.json
+        run: |
+          mkdir -p ${{ github.workspace }}/packages/cms/public/js/
+          cat vendor-manifest.json > ${{ github.workspace }}/packages/cms/public/js/vendor-manifest.json
         
       - name: Install dependencies
         run: |
