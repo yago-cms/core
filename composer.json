@@ -66,6 +66,5 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "vendor/bin/sail artisan package:discover --ansi"
         ]
-    },
-    "version": "3.0.0"
+    }
 }

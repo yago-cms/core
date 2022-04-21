@@ -25,6 +25,5 @@
                 "Yago\\Article\\Providers\\ArticleServiceProvider"
             ]
         }
-    },
-    "version": "3.0.0"
+    }
 }
