@@ -25,7 +25,7 @@
         },
         "download-dist": [
             {
-                "url": "https://github.com/yago-cms/article/releases/download/{$version}/dist.tar.gz",
+                "url": "https://github.com/yago-cms/opening-hours/releases/download/{$version}/dist.tar.gz",
                 "path": "resources/dist"
             }
         ],
