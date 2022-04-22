@@ -6,11 +6,13 @@
     "watch": {
         "publish-cms": "packages/cms/resources",
         "publish-article": "packages/article/resources",
+        "publish-opening-hours": "packages/opening-hours/resources",
         "publish-faq": "packages/faq/resources"
     },
     "scripts": {
         "publish-cms": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\Cms\\Providers\\CmsServiceProvider\" --force",
         "publish-article": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\Article\\Providers\\ArticleServiceProvider\" --force",
+        "publish-opening-hours": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\OpeningHours\\Providers\\OpeningHoursServiceProvider\" --force",
         "publish-faq": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\Faq\\Providers\\FaqServiceProvider\" --force",
         "watch": "npm-watch"
     },

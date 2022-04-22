@@ -11,7 +11,8 @@
         "laravel/sail": "^1.12",
         "yago-cms/article": "self.version",
         "yago-cms/cms": "self.version",
-        "yago-cms/faq": "^3.0"
+        "yago-cms/faq": "self.version",
+        "yago-cms/opening-hours": "self.version"
     },
     "autoload": {
         "psr-4": {
@@ -20,6 +21,7 @@
             "Database\\Seeders\\": ["packages/yago/database/seeders/", "packages/cms/database/seeders/"],
             "Yago\\Cms\\": "packages/cms/src/",
             "Yago\\Article\\": "packages/article/src/",
+            "Yago\\OpeningHours\\": "packages/openinghours/src/",
             "Yago\\Faq\\": "packages/faq/src/"
         }
     },
@@ -28,6 +30,7 @@
             "Tests\\": "packages/yago/tests/",
             "Yago\\Cms\\Tests\\": "packages/cms/tests/",
             "Yago\\Article\\Tests\\": "packages/article/tests/",
+            "Yago\\OpeningHours\\Tests\\": "packages/opening-hours/tests/",
             "Yago\\Faq\\Tests\\": "packages/faq/tests/"
         }
     },
@@ -36,6 +39,7 @@
             "providers": [
                 "Yago\\Cms\\Providers\\CmsServiceProvider",
                 "Yago\\Article\\Providers\\ArticleServiceProvider",
+                "Yago\\OpeningHours\\Providers\\OpeningHoursServiceProvider",
                 "Yago\\Faq\\Providers\\FaqServiceProvider"
             ]
         }
@@ -43,7 +47,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -55,6 +62,10 @@
         {
             "type": "path",
             "url": "packages/article"
+        },
+        {
+            "type": "path",
+            "url": "packages/opening-hours"
         },
         {
             "type": "path",

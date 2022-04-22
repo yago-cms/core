@@ -1,0 +1,65 @@
+extend type Query {
+    openingHour(id: ID @eq): OpeningHour @guard @find
+    openingHours: [OpeningHour!]! @guard @all
+
+    openingHourException(id: ID @eq): OpeningHourException @guard @find
+    openingHourExceptions: [OpeningHourException!]! @guard @all
+}
+
+extend type Mutation {
+    upsertOpeningHours(input: [UpsertOpeningHourInput]!): Boolean @guard @field(resolver: "CreateOpeningHours")
+
+    upsertOpeningHourException(input: UpsertOpeningHourExceptionInput! @spread): OpeningHourException! @guard @upsert
+}
+
+# Opening hour
+type OpeningHour {
+    id: ID!
+
+    name: String!
+    open: String
+    close: String
+    is_closed: Boolean
+    is_closed_for_lunch: Boolean
+    lunch_close: String
+    lunch_open: String
+}
+
+input UpsertOpeningHourInput {
+    id: ID
+
+    name: String!
+    open: String!
+    close: String!
+    is_closed: Boolean
+    is_closed_for_lunch: Boolean
+    lunch_close: String
+    lunch_open: String
+}
+
+# Opening hour exception
+type OpeningHourException {
+    id: ID!
+
+    name: String!
+    date: Date!
+    open: String
+    close: String
+    is_closed: Boolean
+    is_closed_for_lunch: Boolean
+    lunch_close: String
+    lunch_open: String
+}
+
+input UpsertOpeningHourExceptionInput {
+    id: ID
+
+    name: String!
+    date: Date!
+    open: String!
+    close: String!
+    is_closed: Boolean
+    is_closed_for_lunch: Boolean
+    lunch_close: String
+    lunch_open: String
+}

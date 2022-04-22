@@ -1,0 +1,29 @@
+{
+    "name": "yago-cms/opening-hours",
+    "authors": [
+        {
+            "name": "Johan Grönberg",
+            "email": "johan@formsmedjan.se"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Yago\\OpeningHours\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Yago\\OpeningHours\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "yago": {
+            "name": "opening-hours"
+        },
+        "laravel": {
+            "providers": [
+                "Yago\\OpeningHours\\Providers\\OpeningHoursServiceProvider"
+            ]
+        }
+    }
+}
