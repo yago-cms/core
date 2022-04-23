@@ -34,5 +34,8 @@ module.exports = {
             context: path.resolve(__dirname, '..', 'cms'),
             manifest: require('../cms/resources/dist/js/vendor-manifest.json')
         }),
-    ]
+    ],
+    optimization: {
+        sideEffects: false,
+    },
 };
