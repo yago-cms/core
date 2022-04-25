@@ -5,6 +5,7 @@ namespace Yago\Faq\Providers;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Yago\Cms\Services\ModuleService;
+use Yago\Faq\Http\Controllers\FaqController;
 
 class FaqServiceProvider extends ServiceProvider
 {
