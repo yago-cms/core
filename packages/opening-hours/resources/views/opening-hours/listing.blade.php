@@ -7,10 +7,10 @@
         @endphp
 
         <li class="opening-hours-today__exceptions__list__item">
-            {{ __(Str::ucfirst($openingHour->name)) }}:
+            {{ __('yago-opening-hours::opening-hours.' . $openingHour->name) }}:
 
             @if ($openingHour->is_closed)
-                {{ __('Closed') }}
+                {{ __('yago-opening-hours::opening-hours.closed') }}
             @else
                 {{ $times->join('-') }}
 
@@ -20,7 +20,7 @@
                         $times = $times->map(fn($time) => Str::replaceLast(':00', '', $time));
                     @endphp
 
-                    ({{ __('Closed for lunch') }}:
+                    ({{ __('yago-opening-hours::opening-hours.closed_for_lunch') }}:
                     {{ $times->join('-') }})
                 @endif
             @endif
@@ -29,7 +29,7 @@
 
     <div class="opening-hours-today__exceptions">
         <h4 class="opening-hours-today__exceptions__heading">
-            {{ __('Exceptional opening hours') }}
+            {{ __('yago-opening-hours::opening-hours.exceptional_opening_hours') }}
         </h4>
 
         <ul class="opening-hours-today__exceptions__list">
@@ -43,7 +43,7 @@
                     {{ $openingHourException->name }}
 
                     @if (date('Y-m-d') == $openingHourException->date)
-                        ({{ __('Today') }})
+                        ({{ __('yago-opening-hours::opening-hours.today') }})
                         :
                     @else
                         ({{ date('l jS', strtotime($openingHourException->date)) }})
@@ -51,7 +51,7 @@
                     @endif
 
                     @if ($openingHourException->is_closed)
-                        {{ __('Closed') }}
+                        {{ __('yago-opening-hours::opening-hours.closed') }}
                     @else
                         {{ $times->join('-') }}
 
@@ -61,7 +61,7 @@
                                 $times = $times->map(fn($time) => Str::replaceLast(':00', '', $time));
                             @endphp
 
-                            ({{ __('Closed for lunch') }}:
+                            ({{ __('yago-opening-hours::opening-hours.closed_for_lunch') }}:
                             {{ $times->join('-') }})
                         @endif
                     @endif

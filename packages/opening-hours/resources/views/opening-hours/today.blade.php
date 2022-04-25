@@ -1,7 +1,7 @@
 @php
-    if (!$config) {
-        return;
-    }
+if (!$config) {
+    return;
+}
 @endphp
 
 <div class="opening-hours-today">
@@ -34,7 +34,7 @@
 
                         $days = collect([$openingHours->first()->name, $openingHours->last()->name]);
                         $days = $days->unique();
-                        $days = $days->map(fn($day) => __(Str::ucfirst($day)));
+                        $days = $days->map(fn($day) => __('yago-opening-hours::opening-hours.' . $day));
 
                         if (!$isClosed) {
                             $times = Str::of($openClose)->explode('-');
@@ -45,7 +45,7 @@
                     <li
                         class="opening-hours-today__group__list__item @if ($isClosed) opening-hours-today__group__list__item--is--closed @endif">
                         @if ($isClosed)
-                            {{ $days->join('-') }}: {{ __('Closed') }}
+                            {{ $days->join('-') }}: {{ __('yago-opening-hours::opening-hours.closed') }}
                         @else
                             {{ $days->join('-') }}: {{ $times->join('-') }}<br>
                         @endif
@@ -61,10 +61,10 @@
             @endphp
 
             <li class="opening-hours-today__exceptions__list__item">
-                {{ __(Str::ucfirst($openingHour->name)) }}:
+                {{ __('yago-opening-hours::opening-hours.' . $openingHour->name) }}:
 
                 @if ($openingHour->is_closed)
-                    {{ __('Closed') }}
+                    {{ __('yago-opening-hours::opening-hours.closed') }}
                 @else
                     {{ $times->join('-') }}
 
@@ -74,7 +74,7 @@
                             $times = $times->map(fn($time) => Str::replaceLast(':00', '', $time));
                         @endphp
 
-                        ({{ __('Closed for lunch') }}:
+                        ({{ __('yago-opening-hours::opening-hours.closed_for_lunch') }}:
                         {{ $times->join('-') }})
                     @endif
                 @endif
@@ -85,7 +85,7 @@
     @if ($config->showExceptions && count($openingHourExceptions) > 0)
         <div class="opening-hours-today__exceptions">
             <h4 class="opening-hours-today__exceptions__heading">
-                {{ __('Exceptional opening hours') }}
+                {{ __('yago-opening-hours::opening-hours.exceptional_opening_hours') }}
             </h4>
 
             <ul class="opening-hours-today__exceptions__list">
@@ -99,7 +99,7 @@
                         {{ $openingHourException->name }}
 
                         @if ($config->showMessage === false && date('Y-m-d') == $openingHourException->date)
-                            ({{ __('Today') }})
+                            ({{ __('yago-opening-hours::opening-hours.today') }})
                             :
                         @else
                             ({{ date('l jS', strtotime($openingHourException->date)) }})
@@ -107,7 +107,7 @@
                         @endif
 
                         @if ($openingHourException->is_closed)
-                            {{ __('Closed') }}
+                            {{ __('yago-opening-hours::opening-hours.closed') }}
                         @else
                             {{ $times->join('-') }}
 
@@ -117,7 +117,7 @@
                                     $times = $times->map(fn($time) => Str::replaceLast(':00', '', $time));
                                 @endphp
 
-                                ({{ __('Closed for lunch') }}:
+                                ({{ __('yago-opening-hours::opening-hours.closed_for_lunch') }}:
                                 {{ $times->join('-') }})
                             @endif
                         @endif

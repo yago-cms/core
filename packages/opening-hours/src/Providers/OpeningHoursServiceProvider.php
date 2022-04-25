@@ -40,6 +40,8 @@ class OpeningHoursServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations/');
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'yago-opening-hours');
+        $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'yago-opening-hours');
+
 
         $this->publishes([
             __DIR__ . '/../../resources/dist' => public_path('vendor/opening-hours'),
