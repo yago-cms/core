@@ -35,7 +35,4 @@ module.exports = {
             manifest: require('../cms/resources/dist/js/vendor-manifest.json')
         }),
     ],
-    optimization: {
-        sideEffects: false,
-    },
 };
