@@ -1,3 +1,9 @@
+@php
+    if (!$config) {
+        return;
+    }
+@endphp
+
 <div class="opening-hours-today">
     @if ($config->showMessage)
         <p class="opening-hours-today__message">
@@ -76,7 +82,7 @@
         @endforeach
     @endif
 
-    @if ($config->showExceptions)
+    @if ($config->showExceptions && count($openingHourExceptions) > 0)
         <div class="opening-hours-today__exceptions">
             <h4 class="opening-hours-today__exceptions__heading">
                 {{ __('Exceptional opening hours') }}
