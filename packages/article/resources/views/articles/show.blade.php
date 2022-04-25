@@ -2,7 +2,7 @@
     <div class="article-show">
         <div class="article-show__media">
             @foreach ($article->articleMedias as $articleMedia)
-                <x-core.picture class="article-show__picture" img-class="article-show__img img-fluid" :media="$articleMedia->source"
+                <x-yago-cms::core.picture class="article-show__picture" img-class="article-show__img img-fluid" :media="$articleMedia->source"
                     breakpointGroup="default" />
             @endforeach
         </div>

@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-4">
                     @if (count($article->articleMedias))
-                        <x-core.picture class="article-listing__item__picture"
+                        <x-yago-cms::core.picture class="article-listing__item__picture"
                             img-class="article-listing__item__img img-fluid" :media="$article->articleMedias->first()->source"
                             breakpointGroup="default" />
                     @endif
