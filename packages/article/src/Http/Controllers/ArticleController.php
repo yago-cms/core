@@ -10,8 +10,10 @@ use Yago\Article\Models\Article;
 
 class ArticleController extends Controller
 {
-    public function show(Request $request, $config, $segment)
+    public function show(Request $request)
     {
+        $segment = $this->getSegment($request);
+
         $article = Article::where('slug', $segment)
             ->get()
             ->first();
@@ -23,8 +25,10 @@ class ArticleController extends Controller
         return view('yago-article::articles.show', compact('article'));
     }
 
-    public function listing(Request $request, $config, $segment)
+    public function listing(Request $request)
     {
+        $config = $this->getConfig($request);
+
         $query = Article::query();
 
         if (isset($config->categories) && count($config->categories)) {
@@ -48,8 +52,10 @@ class ArticleController extends Controller
         ));
     }
 
-    public function featured(Request $request, $config, $segment)
+    public function featured(Request $request)
     {
+        $config = $this->getConfig($request);
+
         $query = Article::query();
 
         if (isset($config->categories) && count($config->categories)) {

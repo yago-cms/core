@@ -2,15 +2,17 @@
 
 namespace Yago\OpeningHours\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Yago\Cms\Http\Controllers\Controller;
 use Yago\OpeningHours\Models\OpeningHour;
 use Yago\OpeningHours\Models\OpeningHourException;
 
 class OpeningHoursController extends Controller
 {
-    public function today(Request $request, $config, $segment)
+    public function today(Request $request)
     {
+        $config = $this->getConfig($request);
+
         $openingHoursToday = OpeningHour::query()
             ->where('name', strtolower(date('l')))
             ->first();
@@ -48,7 +50,7 @@ class OpeningHoursController extends Controller
         ));
     }
 
-    public function listing(Request $request, $config, $segment)
+    public function listing(Request $request)
     {
         $openingHours = OpeningHour::all();
 

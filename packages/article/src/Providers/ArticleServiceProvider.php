@@ -36,6 +36,7 @@ class ArticleServiceProvider extends ServiceProvider
         $moduleService->registerBlock('article', 'article-listing', [ArticleController::class, 'listing'], 0);
         $moduleService->registerBlock('article', 'article-listing', [ArticleController::class, 'show'], 1);
 
+        $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
         $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations/');
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'yago-article');
         $this->loadViewComponentsAs('yago-article', [

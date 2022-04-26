@@ -1,5 +1,4 @@
 <div class="opening-hours-today">
-
     @foreach ($openingHours as $openingHour)
         @php
             $times = collect([$openingHour->open, $openingHour->close]);

@@ -1,5 +1,5 @@
 @php
-if (!$config) {
+if (!(array)$config) {
     return;
 }
 @endphp
