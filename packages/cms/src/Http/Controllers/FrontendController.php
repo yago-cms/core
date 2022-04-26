@@ -227,7 +227,7 @@ class FrontendController extends Controller
         }
         unset($pageSection);
 
-        if (!$moduleFound) {
+        if ($depth > 0 && !$moduleFound) {
             abort(404);
         }
 
