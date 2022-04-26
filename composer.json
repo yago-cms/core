@@ -12,6 +12,7 @@
         "yago-cms/article": "self.version",
         "yago-cms/cms": "self.version",
         "yago-cms/faq": "self.version",
+        "yago-cms/form": "self.version",
         "yago-cms/opening-hours": "self.version"
     },
     "autoload": {
@@ -21,8 +22,9 @@
             "Database\\Seeders\\": ["packages/yago/database/seeders/", "packages/cms/database/seeders/"],
             "Yago\\Cms\\": "packages/cms/src/",
             "Yago\\Article\\": "packages/article/src/",
-            "Yago\\OpeningHours\\": "packages/openinghours/src/",
-            "Yago\\Faq\\": "packages/faq/src/"
+            "Yago\\Faq\\": "packages/faq/src/",
+            "Yago\\Form\\": "packages/form/src/",
+            "Yago\\OpeningHours\\": "packages/openinghours/src/"
         }
     },
     "autoload-dev": {
@@ -30,8 +32,9 @@
             "Tests\\": "packages/yago/tests/",
             "Yago\\Cms\\Tests\\": "packages/cms/tests/",
             "Yago\\Article\\Tests\\": "packages/article/tests/",
-            "Yago\\OpeningHours\\Tests\\": "packages/opening-hours/tests/",
-            "Yago\\Faq\\Tests\\": "packages/faq/tests/"
+            "Yago\\Faq\\Tests\\": "packages/faq/tests/",
+            "Yago\\Form\\Tests\\": "packages/form/tests/",
+            "Yago\\OpeningHours\\Tests\\": "packages/opening-hours/tests/"
         }
     },
     "extra": {
@@ -39,8 +42,9 @@
             "providers": [
                 "Yago\\Cms\\Providers\\CmsServiceProvider",
                 "Yago\\Article\\Providers\\ArticleServiceProvider",
-                "Yago\\OpeningHours\\Providers\\OpeningHoursServiceProvider",
-                "Yago\\Faq\\Providers\\FaqServiceProvider"
+                "Yago\\Faq\\Providers\\FaqServiceProvider",
+                "Yago\\Form\\Providers\\FormServiceProvider",
+                "Yago\\OpeningHours\\Providers\\OpeningHoursServiceProvider"
             ]
         }
     },
@@ -65,11 +69,15 @@
         },
         {
             "type": "path",
-            "url": "packages/opening-hours"
+            "url": "packages/faq"
         },
         {
             "type": "path",
-            "url": "packages/faq"
+            "url": "packages/form"
+        },
+        {
+            "type": "path",
+            "url": "packages/opening-hours"
         }
     ],
     "scripts": {

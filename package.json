@@ -6,14 +6,16 @@
     "watch": {
         "publish-cms": "packages/cms/resources",
         "publish-article": "packages/article/resources",
-        "publish-opening-hours": "packages/opening-hours/resources",
-        "publish-faq": "packages/faq/resources"
+        "publish-faq": "packages/faq/resources",
+        "publish-form": "packages/form/resources",
+        "publish-opening-hours": "packages/opening-hours/resources"
     },
     "scripts": {
         "publish-cms": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\Cms\\Providers\\CmsServiceProvider\" --force",
         "publish-article": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\Article\\Providers\\ArticleServiceProvider\" --force",
-        "publish-opening-hours": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\OpeningHours\\Providers\\OpeningHoursServiceProvider\" --force",
         "publish-faq": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\Faq\\Providers\\FaqServiceProvider\" --force",
+        "publish-form": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\Form\\Providers\\FormServiceProvider\" --force",
+        "publish-opening-hours": "docker-compose exec -T laravel.test php artisan vendor:publish --provider \"Yago\\OpeningHours\\Providers\\OpeningHoursServiceProvider\" --force",
         "watch": "npm-watch"
     },
     "prettier": {

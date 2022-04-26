@@ -1,0 +1,38 @@
+{
+    "name": "yago-cms/form",
+    "authors": [
+        {
+            "name": "Johan Grönberg",
+            "email": "johan@formsmedjan.se"
+        }
+    ],
+    "require": {
+        "pixelfear/composer-dist-plugin": "^0.1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yago\\Form\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Yago\\Form\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "yago": {
+            "name": "form"
+        },
+        "download-dist": [
+            {
+                "url": "https://github.com/yago-cms/form/releases/download/{$version}/dist.tar.gz",
+                "path": "resources/dist"
+            }
+        ],
+        "laravel": {
+            "providers": [
+                "Yago\\Form\\Providers\\FormServiceProvider"
+            ]
+        }
+    }
+}

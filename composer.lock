@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1314933e6abb557211a7889378d5c55",
+    "content-hash": "a5a59ec31abdc74a6f58c84c348b0395",
     "packages": [
         {
             "name": "brick/math",
@@ -1768,16 +1768,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.0.17",
+            "version": "3.0.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "29eb78cac0be0c22237c5e0f6f98234d97037d79"
+                "reference": "c8e137e594948240b03372e012344b07c61b9193"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/29eb78cac0be0c22237c5e0f6f98234d97037d79",
-                "reference": "29eb78cac0be0c22237c5e0f6f98234d97037d79",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/c8e137e594948240b03372e012344b07c61b9193",
+                "reference": "c8e137e594948240b03372e012344b07c61b9193",
                 "shasum": ""
             },
             "require": {
@@ -1838,7 +1838,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.0.17"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.0.18"
             },
             "funding": [
                 {
@@ -1854,7 +1854,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-04-14T14:57:13+00:00"
+            "time": "2022-04-25T18:55:04+00:00"
         },
         {
             "name": "league/glide",
@@ -2470,16 +2470,16 @@
         },
         {
             "name": "nuwave/lighthouse",
-            "version": "v5.47.1",
+            "version": "v5.48.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nuwave/lighthouse.git",
-                "reference": "49736b0a0a7477e515b249d4ddf18ea7b9aa5e45"
+                "reference": "7c8b2b05443b7fb8b337c8db45af4d8005802054"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nuwave/lighthouse/zipball/49736b0a0a7477e515b249d4ddf18ea7b9aa5e45",
-                "reference": "49736b0a0a7477e515b249d4ddf18ea7b9aa5e45",
+                "url": "https://api.github.com/repos/nuwave/lighthouse/zipball/7c8b2b05443b7fb8b337c8db45af4d8005802054",
+                "reference": "7c8b2b05443b7fb8b337c8db45af4d8005802054",
                 "shasum": ""
             },
             "require": {
@@ -2596,7 +2596,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-04-21T12:15:31+00:00"
+            "time": "2022-04-25T09:54:52+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -6195,13 +6195,22 @@
             "dist": {
                 "type": "path",
                 "url": "packages/faq",
-                "reference": "9246781ee90a4bae0bb8ed74ab734a08c81ed57d"
+                "reference": "12bd4e50ab36279c8f6ccceabbc80edd66f107b8"
+            },
+            "require": {
+                "pixelfear/composer-dist-plugin": "^0.1.5"
             },
             "type": "library",
             "extra": {
                 "yago": {
                     "name": "faq"
                 },
+                "download-dist": [
+                    {
+                        "url": "https://github.com/yago-cms/faq/releases/download/{$version}/dist.tar.gz",
+                        "path": "resources/dist"
+                    }
+                ],
                 "laravel": {
                     "providers": [
                         "Yago\\Faq\\Providers\\FaqServiceProvider"
@@ -6229,18 +6238,75 @@
             }
         },
         {
+            "name": "yago-cms/form",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/form",
+                "reference": "5757f7d06add919c880d8f858906ef9719e26cb9"
+            },
+            "require": {
+                "pixelfear/composer-dist-plugin": "^0.1.5"
+            },
+            "type": "library",
+            "extra": {
+                "yago": {
+                    "name": "form"
+                },
+                "download-dist": [
+                    {
+                        "url": "https://github.com/yago-cms/form/releases/download/{$version}/dist.tar.gz",
+                        "path": "resources/dist"
+                    }
+                ],
+                "laravel": {
+                    "providers": [
+                        "Yago\\Form\\Providers\\FormServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yago\\Form\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Yago\\Form\\Tests\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Johan Grönberg",
+                    "email": "johan@formsmedjan.se"
+                }
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "yago-cms/opening-hours",
             "version": "dev-main",
             "dist": {
                 "type": "path",
                 "url": "packages/opening-hours",
-                "reference": "a8f22e5a253ea0a3e5859394602ba46db62e94fb"
+                "reference": "759ae9096a89415291ea0d670daadbcdf0f9f956"
+            },
+            "require": {
+                "pixelfear/composer-dist-plugin": "^0.1.5"
             },
             "type": "library",
             "extra": {
                 "yago": {
                     "name": "opening-hours"
                 },
+                "download-dist": [
+                    {
+                        "url": "https://github.com/yago-cms/opening-hours/releases/download/{$version}/dist.tar.gz",
+                        "path": "resources/dist"
+                    }
+                ],
                 "laravel": {
                     "providers": [
                         "Yago\\OpeningHours\\Providers\\OpeningHoursServiceProvider"
@@ -6275,6 +6341,7 @@
         "yago-cms/article": 20,
         "yago-cms/cms": 20,
         "yago-cms/faq": 20,
+        "yago-cms/form": 20,
         "yago-cms/opening-hours": 20
     },
     "prefer-stable": true,
