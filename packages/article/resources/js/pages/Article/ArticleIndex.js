@@ -3,18 +3,25 @@ import { faEdit, faPlus } from "@fortawesome/pro-duotone-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconButton } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loading, Page, PageContent } from "../../../../../cms/resources/js/module";
 import { GET_ARTICLES } from "../../queries";
 
 export const ArticleIndex = () => {
-  const getArticlesResult = useQuery(GET_ARTICLES);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  const getArticlesResult = useQuery(GET_ARTICLES, {
+    variables: {
+      page: 1,
+    }
+  });
   const navigate = useNavigate();
 
-  const loading = getArticlesResult.loading;
+  const isLoading = getArticlesResult.loading;
   const error = getArticlesResult.error;
 
-  if (loading) return <Loading />;
+  if (isLoading) return <Loading />;
   if (error) return <Error message={error.message} />;
 
   const columns = [
@@ -35,7 +42,7 @@ export const ArticleIndex = () => {
     }
   ];
 
-  const rows = getArticlesResult.data.articles.map((faq) => ({
+  const rows = getArticlesResult.data.articles.data.map((faq) => ({
     id: faq.id,
     name: faq.name,
   }));
@@ -53,6 +60,19 @@ export const ArticleIndex = () => {
           <DataGrid
             columns={columns}
             rows={rows}
+            paginationMode="server"
+            rowCount={getArticlesResult.data.articles.paginatorInfo.total}
+            rowsPerPageOptions={[25]}
+            pageSize={25}
+            onPageChange={(page) => {
+              setIsLoadingMore(true);
+              getArticlesResult.fetchMore({
+                variables: {
+                  page: page + 1,
+                }
+              }).then(() => setIsLoadingMore(false))
+            }}
+            loading={isLoadingMore}
             disableColumnMenu
             disableColumnFilter
             disableColumnSelector

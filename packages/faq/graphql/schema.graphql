@@ -1,6 +1,6 @@
 extend type Query {
     faq(id: ID @eq): Faq @guard @find
-    faqs: [Faq!]! @guard @all
+    faqs: [Faq!]! @guard @paginate
 }
 
 extend type Mutation {

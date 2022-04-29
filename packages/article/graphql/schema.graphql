@@ -1,6 +1,6 @@
 extend type Query {
     article(id: ID @eq): Article @guard @find
-    articles: [Article!]! @guard @all
+    articles: [Article!]! @guard @paginate
 
     articleCategory(id: ID @eq): ArticleCategory @guard @find
     articleCategories: [ArticleCategory!]! @guard @all

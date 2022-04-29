@@ -3,18 +3,25 @@ import { faEdit, faPlus } from "@fortawesome/pro-duotone-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconButton } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Error, Loading, Page, PageContent } from "../../../../../cms/resources/js/module";
 import { GET_OPENING_HOUR_EXCEPTIONS } from "../../queries";
 
 export const OpeningHoursIndex = () => {
-  const getOpeningHourExceptions = useQuery(GET_OPENING_HOUR_EXCEPTIONS);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  const getOpeningHourExceptionsResult = useQuery(GET_OPENING_HOUR_EXCEPTIONS, {
+    variables: {
+      page: 1,
+    }
+  });
   const navigate = useNavigate();
 
-  const loading = getOpeningHourExceptions.loading;
-  const error = getOpeningHourExceptions.error;
+  const isLoading = getOpeningHourExceptionsResult.loading;
+  const error = getOpeningHourExceptionsResult.error;
 
-  if (loading) return <Loading />;
+  if (isLoading) return <Loading />;
   if (error) return <Error message={error.message} />;
 
   const columns = [
@@ -39,7 +46,7 @@ export const OpeningHoursIndex = () => {
     }
   ];
 
-  const rows = getOpeningHourExceptions.data.openingHourExceptions.map((openingHourException) => ({
+  const rows = getOpeningHourExceptionsResult.data.openingHourExceptions.data.map((openingHourException) => ({
     id: openingHourException.id,
     name: openingHourException.name,
     date: openingHourException.date,
@@ -58,6 +65,19 @@ export const OpeningHoursIndex = () => {
           <DataGrid
             columns={columns}
             rows={rows}
+            paginationMode="server"
+            rowCount={getOpeningHourExceptionsResult.data.openingHourExceptions.paginatorInfo.total}
+            rowsPerPageOptions={[25]}
+            pageSize={25}
+            onPageChange={(page) => {
+              setIsLoadingMore(true);
+              getOpeningHourExceptionsResult.fetchMore({
+                variables: {
+                  page: page + 1,
+                }
+              }).then(() => setIsLoadingMore(false))
+            }}
+            loading={isLoadingMore}
             disableColumnMenu
             disableColumnFilter
             disableColumnSelector
