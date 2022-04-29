@@ -2,21 +2,27 @@ import { gql } from "@apollo/client";
 
 // Article
 export const GET_ARTICLES = gql`
-    query GetArticles {
-        articles {
-            id
-
-            articleCategories {
+    query GetArticles($page: Int!) {
+        articles(first: 25, page: $page) @connection(key: "article") {
+            data {
                 id
+
+                articleCategories {
+                    id
+
+                    name
+                    slug
+                }
 
                 name
                 slug
+                start
+                stop
             }
 
-            name
-            slug
-            start
-            stop
+            paginatorInfo {
+                total
+            }
         }
     }
 `;

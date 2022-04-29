@@ -41,12 +41,18 @@ export const UPSERT_OPENING_HOUR = gql`
 
 // Opening hour exceptions
 export const GET_OPENING_HOUR_EXCEPTIONS = gql`
-    query GetOpeningHourExceptions {
-        openingHourExceptions {
-            id
+    query GetOpeningHourExceptions($page: Int!) {
+        openingHourExceptions(first: 25, page: $page) @connection(key: "opening-hour-exception") {
+            data {
+                id
 
-            name
-            date
+                name
+                date
+            }
+
+            paginatorInfo {
+                total
+            }
         }
     }
 `;

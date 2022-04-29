@@ -2,11 +2,17 @@ import { gql } from "@apollo/client";
 
 // Application
 export const GET_FAQS = gql`
-    query GetFaqs {
-        faqs {
-            id
+    query GetFaqs($page: Int!) {
+        faqs(first: 25, page: $page) @connection(key: "faq") {
+            data {
+                id
 
-            name
+                name
+            }
+
+            paginatorInfo {
+                total
+            }
         }
     }
 `;
