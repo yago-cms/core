@@ -6,7 +6,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
 import { Error, Input, Loading, Page, PageContent, Wysiwyg } from "../../../../../cms/resources/js/module";
-import { GET_FAQ, GET_FAQS, UPSERT_FAQ } from "../../queries";
+import { GET_FAQ, GET_FAQS_PAGINATED, UPSERT_FAQ } from "../../queries";
 
 const schema = yup.object({
   name: yup.string().required(),
@@ -34,32 +34,12 @@ export const FaqForm = () => {
     onCompleted: (data) => {
       navigate(`/faqs/${data.upsertFaq.id}`);
     },
-    update: (cache, { data: { upsertFaq } }) => {
-      const data = cache.readQuery({
-        query: GET_FAQS
-      });
-
-      if (data !== null) {
-        const faqs = _.cloneDeep(data.faqs);
-
-        if (isNew) {
-          faqs.push(upsertFaq);
-        } else {
-          faqs.forEach(faq => {
-            if (faq.id === upsertFaq.id) {
-              faq = upsertFaq;
-            }
-          });
-        }
-
-        cache.writeQuery({
-          query: GET_FAQS,
-          data: {
-            faqs
-          },
-        });
+    refetchQueries: () => [{
+      query: GET_FAQS_PAGINATED,
+      variables: {
+        page: 1,
       }
-    },
+    }]
   });
 
   const handleSave = (data) => {

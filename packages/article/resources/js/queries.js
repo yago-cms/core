@@ -3,7 +3,27 @@ import { gql } from "@apollo/client";
 // Article
 export const GET_ARTICLES = gql`
     query GetArticles($page: Int!) {
-        articles(first: 25, page: $page) @connection(key: "article") {
+        articles {
+            id
+
+            articleCategories {
+                id
+
+                name
+                slug
+            }
+
+            name
+            slug
+            start
+            stop
+        }
+    }
+`;
+
+export const GET_ARTICLES_PAGINATED = gql`
+    query GetArticlesPaginated($page: Int!) {
+        articlesPaginated(first: 25, page: $page) @connection(key: "article") {
             data {
                 id
 

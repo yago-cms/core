@@ -3,7 +3,8 @@ extend type Query {
     openingHours: [OpeningHour!]! @guard @all
 
     openingHourException(id: ID @eq): OpeningHourException @guard @find
-    openingHourExceptions: [OpeningHourException!]! @guard @paginate
+    openingHourExceptions: [OpeningHourException!]! @guard @all
+    openingHourExceptionsPaginated: [OpeningHourException!]! @guard @paginate
 }
 
 extend type Mutation {

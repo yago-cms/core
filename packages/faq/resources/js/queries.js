@@ -4,6 +4,16 @@ import { gql } from "@apollo/client";
 export const GET_FAQS = gql`
     query GetFaqs($page: Int!) {
         faqs(first: 25, page: $page) @connection(key: "faq") {
+            id
+
+            name
+        }
+    }
+`;
+
+export const GET_FAQS_PAGINATED = gql`
+    query GetFaqsPaginated($page: Int!) {
+        faqsPaginated(first: 25, page: $page) @connection(key: "faq") {
             data {
                 id
 

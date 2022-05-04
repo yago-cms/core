@@ -6,12 +6,12 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loading, Page, PageContent } from "../../../../../cms/resources/js/module";
-import { GET_ARTICLES } from "../../queries";
+import { GET_ARTICLES_PAGINATED } from "../../queries";
 
 export const ArticleIndex = () => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-  const getArticlesResult = useQuery(GET_ARTICLES, {
+  const getArticlesResult = useQuery(GET_ARTICLES_PAGINATED, {
     variables: {
       page: 1,
     }
@@ -42,7 +42,7 @@ export const ArticleIndex = () => {
     }
   ];
 
-  const rows = getArticlesResult.data.articles.data.map((faq) => ({
+  const rows = getArticlesResult.data.articlesPaginated.data.map((faq) => ({
     id: faq.id,
     name: faq.name,
   }));
@@ -61,7 +61,7 @@ export const ArticleIndex = () => {
             columns={columns}
             rows={rows}
             paginationMode="server"
-            rowCount={getArticlesResult.data.articles.paginatorInfo.total}
+            rowCount={getArticlesResult.data.articlesPaginated.paginatorInfo.total}
             rowsPerPageOptions={[25]}
             pageSize={25}
             onPageChange={(page) => {
