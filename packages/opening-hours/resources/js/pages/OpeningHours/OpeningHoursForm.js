@@ -7,8 +7,8 @@ import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
-import { Checkbox, DatePicker, DateTimePicker, Error, GET_SETTINGS, Input, Loading, Page, PageContent, Select, TimePicker, Wysiwyg } from "../../../../../cms/resources/js/module";
-import { GET_OPENING_HOUR_EXCEPTION, GET_OPENING_HOUR_EXCEPTIONS, UPSERT_OPENING_HOUR_EXCEPTION } from "../../queries";
+import { Checkbox, DatePicker, Error, Input, Loading, Page, PageContent, TimePicker } from "../../../../../cms/resources/js/module";
+import { GET_OPENING_HOUR_EXCEPTION, GET_OPENING_HOUR_EXCEPTIONS_PAGINATED, UPSERT_OPENING_HOUR_EXCEPTION } from "../../queries";
 import { timeToDate } from "./OpeningHoursSettings";
 
 const schema = yup.object({
@@ -63,32 +63,12 @@ export const OpeningHoursForm = () => {
     onCompleted: (data) => {
       navigate(`/opening-hours/${data.upsertOpeningHourException.id}`);
     },
-    update: (cache, { data: { upsertOpeningHourException } }) => {
-      const data = cache.readQuery({
-        query: GET_OPENING_HOUR_EXCEPTIONS
-      });
-
-      if (data !== null) {
-        const openingHourExceptions = _.cloneDeep(data.openingHourExceptions);
-
-        if (isNew) {
-          openingHourExceptions.push(upsertOpeningHourException);
-        } else {
-          openingHourExceptions.forEach(openingHourException => {
-            if (openingHourException.id === upsertOpeningHourException.id) {
-              openingHourException = upsertOpeningHourException;
-            }
-          });
-        }
-
-        cache.writeQuery({
-          query: GET_OPENING_HOUR_EXCEPTIONS,
-          data: {
-            openingHourExceptions
-          },
-        });
+    refetchQueries: () => [{
+      query: GET_OPENING_HOUR_EXCEPTIONS_PAGINATED,
+      variables: {
+        page: 1,
       }
-    },
+    }]
   });
 
   const handleSave = (data) => {

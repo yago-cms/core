@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- <link href="{{ mix('frontend/css/app.css') }}" rel="stylesheet"> --}}
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     @stack('styles')
 
@@ -40,9 +40,7 @@
 
     @yield('content')
 
-    {{-- <script src="{{ mix('frontend/js/manifest.js') }}"></script>
-    <script src="{{ mix('frontend/js/vendor.js') }}"></script>
-    <script src="{{ mix('frontend/js/app.js') }}"></script> --}}
+    <script src="{{ mix('js/app.js') }}"></script>
 
     @stack('scripts')
 </body>

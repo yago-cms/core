@@ -9,7 +9,7 @@ import * as yup from "yup";
 import { DateTimePicker, Error, Input, Loading, Page, PageContent, Select, Wysiwyg } from "../../../../../cms/resources/js/module";
 import { GET_SETTINGS } from "../../../../../cms/resources/js/queries";
 import { Medias } from "../../components/Medias";
-import { GET_ARTICLE, GET_ARTICLES, GET_ARTICLE_CATEGORIES, UPSERT_ARTICLE } from "../../queries";
+import { GET_ARTICLE, GET_ARTICLES_PAGINATED, GET_ARTICLE_CATEGORIES, UPSERT_ARTICLE } from "../../queries";
 
 const schema = yup.object({
   name: yup.string().required(),
@@ -64,32 +64,12 @@ export const ArticleForm = () => {
     onCompleted: (data) => {
       navigate(`/articles/${data.upsertArticle.id}`);
     },
-    update: (cache, { data: { upsertArticle } }) => {
-      const data = cache.readQuery({
-        query: GET_ARTICLES
-      });
-
-      if (data !== null) {
-        const articles = _.cloneDeep(data.articles);
-
-        if (isNew) {
-          articles.push(upsertArticle);
-        } else {
-          articles.forEach(article => {
-            if (article.id === upsertArticle.id) {
-              article = upsertArticle;
-            }
-          });
-        }
-
-        cache.writeQuery({
-          query: GET_ARTICLES,
-          data: {
-            articles
-          },
-        });
+    refetchQueries: () => [{
+      query: GET_ARTICLES_PAGINATED,
+      variables: {
+        page: 1,
       }
-    },
+    }]
   });
 
   const handlePublish = (data) => {

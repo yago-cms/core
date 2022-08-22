@@ -6,12 +6,12 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Error, Loading, Page, PageContent } from "../../../../../cms/resources/js/module";
-import { GET_OPENING_HOUR_EXCEPTIONS } from "../../queries";
+import { GET_OPENING_HOUR_EXCEPTIONS_PAGINATED } from "../../queries";
 
 export const OpeningHoursIndex = () => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-  const getOpeningHourExceptionsResult = useQuery(GET_OPENING_HOUR_EXCEPTIONS, {
+  const getOpeningHourExceptionsResult = useQuery(GET_OPENING_HOUR_EXCEPTIONS_PAGINATED, {
     variables: {
       page: 1,
     }
@@ -46,7 +46,7 @@ export const OpeningHoursIndex = () => {
     }
   ];
 
-  const rows = getOpeningHourExceptionsResult.data.openingHourExceptions.data.map((openingHourException) => ({
+  const rows = getOpeningHourExceptionsResult.data.openingHourExceptionsPaginated.data.map((openingHourException) => ({
     id: openingHourException.id,
     name: openingHourException.name,
     date: openingHourException.date,
@@ -66,7 +66,7 @@ export const OpeningHoursIndex = () => {
             columns={columns}
             rows={rows}
             paginationMode="server"
-            rowCount={getOpeningHourExceptionsResult.data.openingHourExceptions.paginatorInfo.total}
+            rowCount={getOpeningHourExceptionsResult.data.openingHourExceptionsPaginated.paginatorInfo.total}
             rowsPerPageOptions={[25]}
             pageSize={25}
             onPageChange={(page) => {
