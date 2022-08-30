@@ -11,8 +11,8 @@
                 @endif
             </p>
 
-            <a href="{{ url("{$pageRoute}/{$article->slug}") }}" class="btn btn-primary swiper-slide__cta">Read
-                more</a>
+            <a href="{{ url("{$pageRoute}/{$article->slug}") }}"
+                class="btn btn-primary swiper-slide__cta">{{ __('Read more') }}</a>
         </div>
     @endforeach
 @endif

@@ -2,8 +2,8 @@
     <div class="article-show">
         <div class="article-show__media">
             @foreach ($article->articleMedias as $articleMedia)
-                <x-yago-cms::core.picture class="article-show__picture" img-class="article-show__img img-fluid" :media="$articleMedia->source"
-                    breakpointGroup="default" />
+                <x-yago-cms::core.picture class="article-show__picture" img-class="article-show__img img-fluid"
+                    :media="$articleMedia->source" breakpointGroup="default" />
             @endforeach
         </div>
 
@@ -21,10 +21,10 @@
         @if (count($article->articleCategories))
             <div class="article-show__footer">
                 <div class="article-show__categories">
-                    <h2 class="article-show__categories__heading">Categories</h2>
+                    <h2 class="article-show__categories__heading">{{ __('Categories') }}</h2>
                     <ul class="article-show__categories__list">
                         @foreach ($article->articleCategories as $articleCategory)
-                        <li>{{ $articleCategory->name }}</li>
+                            <li>{{ $articleCategory->name }}</li>
                         @endforeach
                     </ul>
                 </div>

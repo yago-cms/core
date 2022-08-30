@@ -22,17 +22,17 @@
                             @if (!empty($article->excerpt) && SettingsHelper::get('article.isExcerptsEnabled'))
                                 {!! $article->excerpt !!}
                             @else
-                                {!! Str::limit($article->content,  SettingsHelper::get('article.truncate') ?? 100) !!}
+                                {!! Str::limit($article->content, SettingsHelper::get('article.truncate') ?? 100) !!}
                             @endif
                         </p>
 
                         <a href="{{ url("{$pageRoute}/{$article->slug}") }}"
-                            class="article-featured__item__link btn btn-primary">Read more</a>
+                            class="article-featured__item__link btn btn-primary">{{ __('Read more') }}</a>
                     </div>
                 </div>
             </div>
         </div>
     @endforeach
 
-    <a href="{{ url($pageRoute) }}" class="article-featured__link btn btn-primary">View all news</a>
+    <a href="{{ url($pageRoute) }}" class="article-featured__link btn btn-primary">{{ __('View all news') }}</a>
 </div>
