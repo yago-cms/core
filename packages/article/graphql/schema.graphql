@@ -1,7 +1,7 @@
 extend type Query {
     article(id: ID @eq): Article @guard @find
-    articles: [Article!]! @guard @all
-    articlesPaginated: [Article!]! @guard @paginate
+    articles: [Article!]! @guard @all @orderBy(column: "created_at", direction: "DESC")
+    articlesPaginated: [Article!]! @guard @paginate @orderBy(column: "created_at", direction: "DESC")
 
     articleCategory(id: ID @eq): ArticleCategory @guard @find
     articleCategories: [ArticleCategory!]! @guard @all
