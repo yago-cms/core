@@ -26,6 +26,7 @@ type Article {
     stop: DateTime
     content: String!
     excerpt: String
+    is_active: Bool
 }
 
 input UpsertArticleInput {
@@ -40,6 +41,7 @@ input UpsertArticleInput {
     stop: DateTime
     content: String!
     excerpt: String
+    is_active: Bool
 }
 
 input UpdateArticleCategoriesBelongsToMany {

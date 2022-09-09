@@ -21,6 +21,7 @@ class CreateArticlesTable extends Migration
             $table->dateTime('stop')->nullable();
             $table->text('content');
             $table->text('excerpt')->nullable();
+            $table->boolean('is_active')->defalt(true);
             $table->timestamps();
         });
     }

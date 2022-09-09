@@ -17,6 +17,7 @@ export const GET_ARTICLES = gql`
             slug
             start
             stop
+            is_active
         }
     }
 `;
@@ -38,6 +39,7 @@ export const GET_ARTICLES_PAGINATED = gql`
                 slug
                 start
                 stop
+                is_active
             }
 
             paginatorInfo {
@@ -72,6 +74,7 @@ export const GET_ARTICLE = gql`
             stop
             content
             excerpt
+            is_active
         }
     }
 `;
@@ -101,6 +104,7 @@ export const UPSERT_ARTICLE = gql`
             stop
             content
             excerpt
+            is_active
         }
     }
 `;

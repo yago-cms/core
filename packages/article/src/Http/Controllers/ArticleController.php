@@ -14,7 +14,9 @@ class ArticleController extends Controller
     {
         $segment = $this->getSegment($request);
 
-        $article = Article::where('slug', $segment)
+        $article = Article::query()
+            ->where('slug', $segment)
+            ->where('is_active', true)
             ->get()
             ->first();
 
@@ -42,6 +44,7 @@ class ArticleController extends Controller
         }
 
         $articles = $query
+            ->where('is_active', true)
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -71,6 +74,7 @@ class ArticleController extends Controller
         }
 
         $articles = $query
+            ->where('is_active', true)
             ->orderBy('created_at', 'desc')
             ->get();
 

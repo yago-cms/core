@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
-import { DateTimePicker, Error, Input, Loading, Page, PageContent, Select, Wysiwyg } from "../../../../../cms/resources/js/module";
+import { Checkbox, DateTimePicker, Error, Input, Loading, Page, PageContent, Select, Wysiwyg } from "../../../../../cms/resources/js/module";
 import { GET_SETTINGS } from "../../../../../cms/resources/js/queries";
 import { Medias } from "../../components/Medias";
 import { GET_ARTICLE, GET_ARTICLES_PAGINATED, GET_ARTICLE_CATEGORIES, UPSERT_ARTICLE } from "../../queries";
@@ -25,6 +25,7 @@ const schema = yup.object({
       alt: yup.string(),
     })
   ),
+  isActive: yup.boolean(),
 });
 
 export const ArticleForm = () => {
@@ -37,6 +38,7 @@ export const ArticleForm = () => {
       categories: [],
       medias: [],
       start: new Date(),
+      isActive: true,
     }
   });
 
@@ -95,6 +97,7 @@ export const ArticleForm = () => {
       stop: data.stop ? format(data.stop, 'yyyy-MM-dd HH:mm:ss') : null,
       content: data.content,
       excerpt: data.excerpt,
+      is_active: data.isActive,
     };
 
     // Deleted medias
@@ -173,6 +176,7 @@ export const ArticleForm = () => {
       methods.setValue('stop', article.stop ? parseISO(article.stop) : null);
       methods.setValue('content', article.content);
       methods.setValue('excerpt', article.excerpt);
+      methods.setValue('isActive', article.is_active);
     }
   }, [getArticleResult.loading, getArticleResult.data]);
 
@@ -208,6 +212,11 @@ export const ArticleForm = () => {
         footer={<Footer />}
       >
         <PageContent>
+          <Checkbox
+            label="Active"
+            name="isActive"
+          />
+
           <Input
             label="Name"
             name="name"
