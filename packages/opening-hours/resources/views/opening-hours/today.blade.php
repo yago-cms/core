@@ -102,7 +102,7 @@ if (!(array)$config) {
                             ({{ __('yago-opening-hours::opening-hours.today') }})
                             :
                         @else
-                            ({{ date('l jS', strtotime($openingHourException->date)) }})
+                            ({{ date('m/d', strtotime($openingHourException->date)) }})
                             :
                         @endif
 
