@@ -1,8 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { faEdit, faPlus } from "@fortawesome/pro-duotone-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconButton } from "@mui/material";
+import { Chip, IconButton, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { format } from "date-fns";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loading, Page, PageContent } from "../../../../../cms/resources/js/module";
@@ -28,7 +29,31 @@ export const ArticleIndex = () => {
     {
       field: 'name',
       headerName: 'Name',
+      width: 200,
+    },
+    {
+      field: 'displayPeriod',
+      headerName: 'Display period',
+      width: 220,
+      renderCell: (params) => (
+        params.row.isShowing ? (params.row.displayPeriod) : (
+          <Typography sx={{
+            color: '#aaa'
+          }} variant="body2">
+            {params.row.displayPeriod}
+          </Typography>
+        )
+      )
+    },
+    {
+      field: 'status',
+      headerName: 'Status',
       flex: 1,
+      renderCell: (params) => (
+        <>
+          {params.row.isActive && <Chip label="Active" color="primary" />}
+        </>
+      )
     },
     {
       field: 'actions',
@@ -39,12 +64,15 @@ export const ArticleIndex = () => {
           <FontAwesomeIcon icon={faEdit} />
         </IconButton>
       ),
-    }
+    },
   ];
 
-  const rows = getArticlesResult.data.articlesPaginated.data.map((faq) => ({
-    id: faq.id,
-    name: faq.name,
+  const rows = getArticlesResult.data.articlesPaginated.data.map((article) => ({
+    id: article.id,
+    name: article.name,
+    displayPeriod: format(new Date(article.start), 'yyyy-MM-dd') + (article.stop ? ` to ${format(new Date(article.stop), 'yyyy-MM-dd')}` : ' and beyond'),
+    isActive: article.is_active,
+    isShowing: new Date() > new Date(article.start) && (!article.stop || new Date() < new Date(article.stop)),
   }));
 
   return (
