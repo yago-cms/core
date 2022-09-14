@@ -3,7 +3,6 @@ import { DialogTitle } from "../DialogTitle";
 import { PreviewFile } from "./File";
 
 export const PreviewDrawer = ({ currentFile, isPreviewActive, setIsPreviewActive }) => {
-    console.log(currentFile);
     return (
         <Dialog
             open={isPreviewActive}
