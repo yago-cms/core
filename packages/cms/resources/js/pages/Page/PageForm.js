@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { faPlus } from "@fortawesome/pro-duotone-svg-icons";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, Typography } from "@mui/material";
+import { Alert, Box, Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate, useParams, Link } from "react-router-dom";
@@ -499,9 +499,10 @@ export const PageForm = () => {
           ? (
             <>
               <PageContent>
-                {isDraft && <div className="alert alert-info">
+                {isDraft && <Alert severity="info" sx={{ mb: 2 }}>
                   This page is a draft and therefore not published. You can continue editing this draft and save changes with <strong>Save draft</strong> or publish it with <strong>Publish</strong>.
-                </div>}
+                </Alert>}
+
                 <Input
                   name="name"
                   label="Name"
