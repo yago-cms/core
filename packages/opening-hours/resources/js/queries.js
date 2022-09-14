@@ -86,12 +86,20 @@ export const GET_OPENING_HOUR_EXCEPTION = gql`
 `;
 
 export const UPSERT_OPENING_HOUR_EXCEPTION = gql`
-    mutation UpsertOpeningHour($input: UpsertOpeningHourExceptionInput!) {
+    mutation UpsertOpeningHourException($input: UpsertOpeningHourExceptionInput!) {
         upsertOpeningHourException(input: $input) {
             id
 
             name
             date
+        }
+    }
+`;
+
+export const DELETE_OPENING_HOUR_EXCEPTION = gql`
+    mutation DeleteOpeningHourException($id: ID!) {
+        deleteOpeningHourException(id: $id) {
+            id
         }
     }
 `;

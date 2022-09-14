@@ -1,5 +1,5 @@
-import { useQuery } from "@apollo/client";
-import { faEdit, faPlus } from "@fortawesome/pro-duotone-svg-icons";
+import { useQuery, useMutation } from "@apollo/client";
+import { faEdit, faPlus, faTrash } from "@fortawesome/pro-duotone-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Chip, IconButton, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
@@ -7,7 +7,7 @@ import { format } from "date-fns";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loading, Page, PageContent } from "../../../../../cms/resources/js/module";
-import { GET_ARTICLES_PAGINATED } from "../../queries";
+import { DELETE_ARTICLE, GET_ARTICLES_PAGINATED } from "../../queries";
 
 export const ArticleIndex = () => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -17,7 +17,29 @@ export const ArticleIndex = () => {
       page: 1,
     }
   });
+
+  const [deleteArticle, deleteArticleResult] = useMutation(DELETE_ARTICLE, {
+    refetchQueries: [
+      {
+        query: GET_ARTICLES_PAGINATED,
+        variables: {
+          page: 1,
+        }
+      }
+    ]
+  });
+
   const navigate = useNavigate();
+
+  const handleDelete = (id) => {
+    if (confirm('Are you sure you want to remove this item?')) {
+      deleteArticle({
+        variables: {
+          id
+        }
+      });
+    }
+  };
 
   const isLoading = getArticlesResult.loading;
   const error = getArticlesResult.error;
@@ -60,9 +82,15 @@ export const ArticleIndex = () => {
       type: 'actions',
       headerName: 'Actions',
       renderCell: (params) => (
-        <IconButton size="small" onClick={() => navigate(`/articles/${params.id}`)}>
-          <FontAwesomeIcon icon={faEdit} />
-        </IconButton>
+        <>
+          <IconButton size="small" onClick={() => handleDelete(params.id)}>
+            <FontAwesomeIcon icon={faTrash} />
+          </IconButton>
+
+          <IconButton size="small" onClick={() => navigate(`/articles/${params.id}`)}>
+            <FontAwesomeIcon icon={faEdit} />
+          </IconButton>
+        </>
       ),
     },
   ];

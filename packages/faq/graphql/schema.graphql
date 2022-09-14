@@ -6,6 +6,9 @@ extend type Query {
 
 extend type Mutation {
     upsertFaq(input: UpsertFaqInput! @spread): Faq! @guard @upsert
+
+    deleteFaq(id: ID!): Faq! @delete
+
 }
 
 # Faq

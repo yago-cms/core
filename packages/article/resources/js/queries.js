@@ -109,6 +109,14 @@ export const UPSERT_ARTICLE = gql`
     }
 `;
 
+export const DELETE_ARTICLE = gql`
+    mutation DeleteArticle($id: ID!) {
+        deleteArticle(id: $id) {
+            id
+        }
+    }
+`;
+
 // Article category
 export const GET_ARTICLE_CATEGORIES = gql`
     query GetArticleCategories {

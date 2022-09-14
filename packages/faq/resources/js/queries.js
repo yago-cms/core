@@ -48,3 +48,11 @@ export const UPSERT_FAQ = gql`
         }
     }
 `;
+
+export const DELETE_FAQ = gql`
+    mutation DeleteFaq($id: ID!) {
+        deleteFaq(id: $id) {
+            id
+        }
+    }
+`;

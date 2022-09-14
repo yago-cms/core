@@ -1,12 +1,12 @@
-import { useQuery } from "@apollo/client";
-import { faEdit, faPlus } from "@fortawesome/pro-duotone-svg-icons";
+import { useQuery, useMutation } from "@apollo/client";
+import { faEdit, faPlus, faTrash } from "@fortawesome/pro-duotone-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconButton } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Error, Loading, Page, PageContent } from "../../../../../cms/resources/js/module";
-import { GET_FAQS_PAGINATED } from "../../queries";
+import { GET_FAQS_PAGINATED, DELETE_FAQ } from "../../queries";
 
 export const FaqIndex = () => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -16,7 +16,29 @@ export const FaqIndex = () => {
       page: 1,
     }
   });
+
+  const [deleteFaq, deleteFaqResult] = useMutation(DELETE_FAQ, {
+    refetchQueries: [
+      {
+        query: GET_FAQS_PAGINATED,
+        variables: {
+          page: 1,
+        }
+      }
+    ]
+  });
+
   const navigate = useNavigate();
+
+  const handleDelete = (id) => {
+    if (confirm('Are you sure you want to remove this item?')) {
+      deleteFaq({
+        variables: {
+          id
+        }
+      });
+    }
+  };
 
   const isLoading = getFaqsResult.loading;
   const error = getFaqsResult.error;
@@ -35,9 +57,15 @@ export const FaqIndex = () => {
       type: 'actions',
       headerName: 'Actions',
       renderCell: (params) => (
-        <IconButton size="small" onClick={() => navigate(`/faqs/${params.id}`)}>
-          <FontAwesomeIcon icon={faEdit} />
-        </IconButton>
+        <>
+          <IconButton size="small" onClick={() => handleDelete(params.id)}>
+            <FontAwesomeIcon icon={faTrash} />
+          </IconButton>
+
+          <IconButton size="small" onClick={() => navigate(`/faqs/${params.id}`)}>
+            <FontAwesomeIcon icon={faEdit} />
+          </IconButton>
+        </>
       ),
     }
   ];

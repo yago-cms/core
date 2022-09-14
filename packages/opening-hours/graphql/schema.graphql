@@ -11,6 +11,8 @@ extend type Mutation {
     upsertOpeningHours(input: [UpsertOpeningHourInput]!): Boolean @guard @field(resolver: "CreateOpeningHours")
 
     upsertOpeningHourException(input: UpsertOpeningHourExceptionInput! @spread): OpeningHourException! @guard @upsert
+
+    deleteOpeningHourException(id: ID!): OpeningHourException! @delete
 }
 
 # Opening hour
