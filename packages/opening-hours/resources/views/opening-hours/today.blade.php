@@ -99,11 +99,9 @@ if (!(array)$config) {
                         {{ $openingHourException->name }}
 
                         @if ($config->showMessage === false && date('Y-m-d') == $openingHourException->date)
-                            ({{ __('yago-opening-hours::opening-hours.today') }})
-                            :
+                            {{ __('yago-opening-hours::opening-hours.today') }}:
                         @else
-                            ({{ date('d/m', strtotime($openingHourException->date)) }})
-                            :
+                            {{ date('l d/m', strtotime($openingHourException->date)) }}:
                         @endif
 
                         @if ($openingHourException->is_closed)
