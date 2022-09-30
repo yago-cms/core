@@ -46,7 +46,7 @@
                             ({{ __('yago-opening-hours::opening-hours.today') }})
                             :
                         @else
-                            ({{ date('d/m', strtotime($openingHourException->date)) }})
+                            ({{ date('m/d', strtotime($openingHourException->date)) }})
                             :
                         @endif
 
