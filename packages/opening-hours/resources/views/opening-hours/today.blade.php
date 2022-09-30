@@ -1,5 +1,5 @@
 @php
-if (!(array)$config) {
+if (!(array) $config) {
     return;
 }
 @endphp
@@ -101,7 +101,7 @@ if (!(array)$config) {
                         @if ($config->showMessage === false && date('Y-m-d') == $openingHourException->date)
                             {{ __('yago-opening-hours::opening-hours.today') }}:
                         @else
-                            {{ date('l d/m', strtotime($openingHourException->date)) }}:
+                            {{ (new \Carbon\Carbon($openingHourException->date))->translatedFormat('l j/n') }}:
                         @endif
 
                         @if ($openingHourException->is_closed)
