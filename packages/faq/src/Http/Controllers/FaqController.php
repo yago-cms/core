@@ -10,7 +10,9 @@ class FaqController extends Controller
 {
     public function listing(Request $request)
     {
-        $faqs = Faq::all();
+        $faqs = Faq::query()
+            ->orderBy('name')
+            ->get();
 
         return view('yago-faq::faqs.listing', compact('faqs'));
     }
