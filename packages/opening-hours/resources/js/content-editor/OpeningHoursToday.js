@@ -121,7 +121,7 @@ export const OpeningHoursTodayBlockEditor = forwardRef(({ content, save }, ref) 
                 <Checkbox
                     label="Show exceptional opening hours"
                     name="showExceptions"
-                    helperText="Will list exceptions one week ahead"
+                    helperText="Will list exceptions one month ahead"
                 />
             </FormGroup>
         </FormProvider>

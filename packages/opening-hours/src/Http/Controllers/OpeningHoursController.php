@@ -36,7 +36,7 @@ class OpeningHoursController extends Controller
         }
 
         $openingHourExceptions = OpeningHourException::query()
-            ->whereBetween('date', [date('Y-m-d'), date('Y-m-d', strtotime('+1 week'))])
+            ->whereBetween('date', [date('Y-m-d'), date('Y-m-d', strtotime('+1 month'))])
             ->orderBy('date')
             ->get();
 
