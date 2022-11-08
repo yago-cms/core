@@ -55,6 +55,7 @@ class OpeningHoursController extends Controller
         $openingHours = OpeningHour::all();
 
         $openingHourExceptions = OpeningHourException::query()
+            ->where('date', '>=', date('Y-m-d'))
             ->orderBy('date')
             ->get();
 
