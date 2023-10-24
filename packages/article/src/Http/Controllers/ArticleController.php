@@ -45,7 +45,7 @@ class ArticleController extends Controller
 
         $articles = $query
             ->where('is_active', true)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('start', 'desc')
             ->get();
 
         $pageRoute = ModuleHelper::getPageRoute(config('page.currentPageId'));
